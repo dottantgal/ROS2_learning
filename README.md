@@ -1,2 +1,2 @@
 # ROS2_learning
-A useful collection of example to learn ROS2 from zero
+A useful collection of examples to learn ROS2 from zero
