@@ -1,5 +1,5 @@
 /**
- * @file my_first_node.cpp
+ * @file node_with_class.cpp
  *
  * @brief A basic ROS2 node implemented with class that spins
  *        and printouts a string waiting for a killing request

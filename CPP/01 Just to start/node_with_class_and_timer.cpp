@@ -1,3 +1,14 @@
+/**
+ * @file node_with_class_and_timer.cpp
+ *
+ * @brief A basic ROS2 node implemented with class that spins
+ *        and printouts a string based on a timer
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
 #include "rclcpp/rclcpp.hpp"
 
 class MyNode : public rclcpp::Node
@@ -9,12 +20,13 @@ private:
 public:
   MyNode() : Node("ros2_node_class_timer")
   {
+    // the timer is initialized with an inherit function from rclcpp::Node
+    // passing two arguments: the frequency to call the callback and
+    // the binded callback itself (binded to be able to pass the class method)
+    // which is triggered when the node starts spinning
     timer_ = this->create_wall_timer(
             std::chrono::milliseconds(200),
-            std::bind(&MyNode::TimerCallback,this));    // the timer is initialized with an inherit function from rclcpp::Node
-                                                        // passing two arguments: the frequency to call the callback and
-                                                        // the binded callback itself (binded to be able to pass the class method)
-                                                        // which is triggered when the node starts spinning
+            std::bind(&MyNode::TimerCallback,this));
   }
 };
 
