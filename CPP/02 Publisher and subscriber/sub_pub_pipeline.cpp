@@ -18,7 +18,7 @@ public:
         pub_ = this->create_publisher<std_msgs::msg::String>(modTopicName_, 10);    // definition of the publisher of a new topic
         sub_ = this->create_subscription<std_msgs::msg::String>(
             topicName_, 10, std::bind(&SubPubPipeline::TopicCallback, 
-            this, std::placeholders::_1));    // definitio of the subscriber to the original topic
+            this, std::placeholders::_1));    // definition of the subscriber to the original topic
                                               // placeholder to pass the topic message data to the callback
     }    
 };
@@ -27,7 +27,7 @@ public:
 void SubPubPipeline::TopicCallback(const std_msgs::msg::String::SharedPtr msg)
 {
     auto newMsg = std_msgs::msg::String();
-    //    the line above can be written as std_msgs::msg::String newMsg;
+    // the line above can be written as std_msgs::msg::String newMsg;
     newMsg.data = "I RESEND " + msg->data;    // new message data is created appending the message got from the topic
     RCLCPP_INFO(this->get_logger(), 
       "Received: %s, Published: %s", msg->data.c_str(), newMsg.data.c_str());   // look that an arrow operator is used
