@@ -1,3 +1,14 @@
+/**
+ * @file simple_publisher_class_node.cpp
+ *
+ * @brief A basic publisher class node
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
+
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
@@ -11,14 +22,12 @@ private:
   void TimerCallback();
 
 public:
-  MyPublisher(std::string passedNodeName="VOID", size_t passedCounter=0) 
+  MyPublisher(std::string passedNodeName="VOID", size_t passedCounter=0)
     : Node(passedNodeName), counter_(passedCounter)
   {
-    pub_ = this->create_publisher<std_msgs::msg::String>("/my_message", 10);    // publisher definition
-                                                                                // it publishes a message of 
-                                                                                // string type
-                                                                                // "my_message" topic
-                                                                                // queue of 10 positions
+    // publisher definition. It publishes a message of String type
+    // to "/my_message" topic with a queue of 10 positions
+    pub_ = this->create_publisher<std_msgs::msg::String>("/my_message", 10);
     timer_ = this->create_wall_timer(
       std::chrono::milliseconds(500), std::bind(&MyPublisher::TimerCallback, this));
   }
@@ -27,7 +36,7 @@ public:
 void MyPublisher::TimerCallback()
 {
   std_msgs::msg::String message;    // message to publish of String type
-  // the line above can be written "auto message = std_msgs::msg::String();"
+  // the line above can be written as "auto message = std_msgs::msg::String();"
   message.data = "Hello, world! " + std::to_string(counter_++);   // the data of the message
   RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());    // printout of the message
   pub_->publish(message);   // publish method
@@ -36,10 +45,10 @@ void MyPublisher::TimerCallback()
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<MyPublisher>("my_publisher_node", 0);    // created a node of our class passing the name of
-                                                                        //  the node and the counter init value
+  // node declaration of class MyPublisher passing the name of the node and the counter init value
+  auto node = std::make_shared<MyPublisher>("my_publisher_node", 0);
   rclcpp::spin(node);
-  // it's possibile to define the two rows above using just one
+  // it's possibile to define the two lines above using just one
   // rclcpp::spin(std::make_shared<MyPublisher>())
 
   rclcpp::shutdown();
