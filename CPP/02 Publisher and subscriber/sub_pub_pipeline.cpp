@@ -5,8 +5,8 @@
 class SubPubPipeline : public rclcpp::Node
 {
 private:
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;    // definition of the publisher of a String type message
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;     // definition of the subscriber to a String type message
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;    // declaration of the publisher of a String type message
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;     // declaration of the subscriber to a String type message
   std::string topicName_;
   std::string modTopicName_;
   void TopicCallback(const std_msgs::msg::String::SharedPtr msg);
@@ -15,7 +15,7 @@ public:
     SubPubPipeline(std::string passedNodeName="/VOID", std::string passedTopicName="/VOID", std::string passedModTopicName="/VOID") 
     : Node(passedNodeName), topicName_(passedTopicName), modTopicName_(passedModTopicName)
     {
-        pub_ = this->create_publisher<std_msgs::msg::String>(modTopicName_, 10);    // definition of the publisher of a new topic
+        pub_ = this->create_publisher<std_msgs::msg::String>(modTopicName_, 10);    // definition of the publisher to a new topic
         sub_ = this->create_subscription<std_msgs::msg::String>(
             topicName_, 10, std::bind(&SubPubPipeline::TopicCallback, 
             this, std::placeholders::_1));    // definition of the subscriber to the original topic
