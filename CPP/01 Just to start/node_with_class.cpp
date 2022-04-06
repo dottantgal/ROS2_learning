@@ -1,4 +1,17 @@
+/**
+ * @file my_first_node.cpp
+ *
+ * @brief A basic ROS2 node implemented with class that spins
+ *        and printouts a string waiting for a killing request
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
+
 #include "rclcpp/rclcpp.hpp"
+
 
 class MyNode : public rclcpp::Node    // class declaration which inherits from rclcpp::Node
 {
@@ -9,9 +22,10 @@ public:
   }
 };
 
+
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<MyNode>();   // created a node of our class
+  auto node = std::make_shared<MyNode>();   // declaration of a MyNode class node
   rclcpp::spin(node);
   rclcpp::shutdown();
   return 0;

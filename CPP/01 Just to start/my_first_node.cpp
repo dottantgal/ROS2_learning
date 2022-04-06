@@ -1,7 +1,7 @@
 /**
  * @file my_first_node.cpp
  *
- * @brief A basic ROS2 node that spins and printout a string
+ * @brief A basic ROS2 node that spins and printouts a string
  *        waiting for a killing request
  *
  * @author Antonio Mauro Galiano
