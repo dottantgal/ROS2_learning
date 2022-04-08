@@ -20,7 +20,9 @@ int main(int argc, char **argv)
 
   // creation of the ROS2 node handled by a shared_ptr
   // to avoid use of new/delete thanks to smart pointers
-  // auto is equivalent to std::shared_ptr<rclcpp::Node>
+  // It's equivalent to "std::shared_ptr<rclcpp::Node> node;"
+  // but in that case there're two heap allocation to reserve memory space
+  // for the control block and the data. With make_shared just one allocation
   auto node = std::make_shared<rclcpp::Node>("ros2_node");
 
   // use of the the logger method of the class Node to printout info
