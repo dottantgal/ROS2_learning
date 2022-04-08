@@ -5,18 +5,18 @@ All the nodes have been tested with ROS2 Foxy [to be continued]
 ## Folders tree
 All the folders cover a specific feature and there are their own CMakeLists.txt and package.xml files to compile them 
 ###### CPP
-- 01 Start with simple nodes
--- my_first_node.cpp
--- node_with_class.cpp
--- node_timer_without_class.cpp
--- node_timer_with_class.cpp
-- 02 Publisher and subscriber
--- simple_publisher_class_node.cpp
--- simple_subscriber_class_node.cpp
-- 03 Custom msg and srv
--- srv/CapitalFullName.srv
-- 04 Service and client
--- service_node.cpp
--- client_node.cpp
+* 01 Start with simple nodes
+    * my_first_node.cpp
+    * node_with_class.cpp
+    * node_timer_without_class.cpp
+    * node_timer_with_class.cpp
+* 02 Publisher and subscriber
+    *  simple_publisher_class_node.cpp
+    *  simple_subscriber_class_node.cpp
+* 03 Custom msg and srv
+    * srv/CapitalFullName.srv
+* 04 Service and client
+    * service_node.cpp
+    * client_node.cpp
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
