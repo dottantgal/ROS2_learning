@@ -9,7 +9,9 @@
  *
  */
 
+
 #include "rclcpp/rclcpp.hpp"
+
 
 class MyNode : public rclcpp::Node
 {
@@ -30,10 +32,12 @@ public:
   }
 };
 
+
 void MyNode::TimerCallback()    // simple callback triggered by the timer to printout info
 {
   RCLCPP_INFO_STREAM(this->get_logger(), "Echo line from a ROS2 class node with timer");
 }
+
 
 int main(int argc, char **argv)
 {
