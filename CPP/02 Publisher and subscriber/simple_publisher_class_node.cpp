@@ -1,4 +1,4 @@
-/**
+//**
  * @file simple_publisher_class_node.cpp
  *
  * @brief A basic publisher class node
@@ -7,7 +7,7 @@
  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
  *
  */
-
+ 
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -17,8 +17,9 @@ class MyPublisher : public rclcpp::Node
 private:
   size_t counter_;    // the published messages counter
   rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;   // declaration of the publisher object
-                                                              // throught a shared ptr
+
+  // declaration of the publisher object throught a shared ptr
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;   
   void TimerCallback();
 
 public:
