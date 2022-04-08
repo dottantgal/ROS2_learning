@@ -26,8 +26,7 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
   node = std::make_shared<rclcpp::Node>("ros2_node_class_timer");
-  auto timer = node->create_wall_timer(
-      std::chrono::milliseconds(200),
+  auto timer = node->create_wall_timer(std::chrono::milliseconds(200),
       TimerCallback);       // timer type is rclcpp::TimerBase::SharedPtr
   rclcpp::spin(node);
   rclcpp::shutdown();
