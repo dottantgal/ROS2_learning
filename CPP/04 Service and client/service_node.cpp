@@ -4,7 +4,10 @@
  * @brief A basic ROS2 service server node that gets two strings as request
  *        and answer with a capitalized full string as response.
  *        It's necessary to use the custom message defined in the external
- *        package "Custom msg and srv" 
+ *        package "Custom msg and srv"
+ *        To call the service from a terminal use on a single line:
+ *        ros2 service call /create_cap_full_name 
+ *        custom_srv_msg/srv/CapitalFullName "{name: x, surname: y}"
  *
  * @author Antonio Mauro Galiano
  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
