@@ -1,5 +1,5 @@
 /**
- * @file client.cpp
+ * @file client_node.cpp
  *
  * @brief A basic ROS2 service client node that asks the user to input two strings
  *        and gets back a capitalized full string from the server service.
