@@ -17,6 +17,7 @@ All the folders cover a specific feature and there are their own CMakeLists.txt 
     * srv/CapitalFullName.srv
 * 04 Service and client
     * service_node.cpp
+    * service_node_class.cpp
     * client_node.cpp
     * client_node_class.cpp
 
