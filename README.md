@@ -18,5 +18,6 @@ All the folders cover a specific feature and there are their own CMakeLists.txt 
 * 04 Service and client
     * service_node.cpp
     * client_node.cpp
+    * client_node_class.cpp
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
