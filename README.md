@@ -11,8 +11,10 @@ All the folders cover a specific feature and there are their own CMakeLists.txt 
     * node_timer_without_class.cpp
     * node_timer_with_class.cpp
 * 02 Publisher and subscriber
-    *  simple_publisher_class_node.cpp
-    *  simple_subscriber_class_node.cpp
+    * simple_publisher_node.cpp
+    * simple_subscriber_node.cpp
+    * simple_publisher_class_node.cpp
+    * simple_subscriber_class_node.cpp
 * 03 Custom msg and srv
     * srv/CapitalFullName.srv
 * 04 Service and client
