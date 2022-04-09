@@ -30,6 +30,12 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+add_executable(simple_subscriber_node src/simple_subscriber_node.cpp)
+ament_target_dependencies(simple_subscriber_node rclcpp)
+
+add_executable(simple_publisher_node src/simple_publisher_node.cpp)
+ament_target_dependencies(simple_publisher_node rclcpp)
+
 add_executable(simple_publisher_class_node src/simple_publisher_class_node.cpp)
 ament_target_dependencies(simple_publisher_class_node rclcpp)
 
@@ -40,6 +46,8 @@ add_executable(sub_pub_pipeline src/sub_pub_pipeline.cpp)
 ament_target_dependencies(sub_pub_pipeline rclcpp)
 
 install(TARGETS
+	 simple_subscriber_node
+	 simple_publisher_node
 	 simple_publisher_class_node
 	 simple_subscriber_class_node
 	 sub_pub_pipeline
