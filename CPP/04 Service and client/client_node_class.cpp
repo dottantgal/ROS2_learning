@@ -25,14 +25,16 @@ private:
   const std::string name_;
   const std::string surname_;
   rclcpp::Client<custom_srv_msg::srv::CapitalFullName>::SharedPtr client_;
+  int ServerResponse();
 
 public:
   MyClientNode(std::string passedNodeName="VOID", std::string passedName="VOID", std::string passedSurname="VOID")
     : Node(passedNodeName), name_(passedName), surname_(passedSurname)
   {
     client_ = this->create_client<custom_srv_msg::srv::CapitalFullName>("create_cap_full_name");
+    this->ServerResponse();
   }
-  int ServerResponse();
+  
 };
 
 
@@ -86,6 +88,5 @@ int main(int argc, char **argv)
   std::cout << "Insert the surname -> ";
   std::cin >> surname;
   auto node = std::make_shared<MyClientNode>("client_node", name, surname);
-  node->ServerResponse();
   rclcpp::shutdown();
 }
