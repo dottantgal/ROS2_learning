@@ -25,7 +25,7 @@ private:
   const std::string name_;
   const std::string surname_;
   rclcpp::Client<custom_srv_msg::srv::CapitalFullName>::SharedPtr client_;
-  int ServerResponse();
+  void ServerResponse();
 
 public:
   MyClientNode(std::string passedNodeName="VOID", std::string passedName="VOID", std::string passedSurname="VOID")
@@ -38,7 +38,7 @@ public:
 };
 
 
-int MyClientNode::ServerResponse()
+void MyClientNode::ServerResponse()
 {
   auto request =
     std::make_shared<custom_srv_msg::srv::CapitalFullName::Request>();
@@ -53,7 +53,6 @@ int MyClientNode::ServerResponse()
     {
       RCLCPP_ERROR(rclcpp::get_logger("rclcpp"),
                    "Interrupted while waiting for the service. Exiting.");
-      return 0;
     }
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"),
                 "SERVICE NOT AVAILABLE, waiting again...");
@@ -74,7 +73,6 @@ int MyClientNode::ServerResponse()
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"),
                  "Failed to call service create_cap_full_name");
   }
-  return 0;
 }
 
 
