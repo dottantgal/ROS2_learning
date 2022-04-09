@@ -37,9 +37,13 @@ ament_target_dependencies(service_node rclcpp custom_srv_msg)
 add_executable(client_node src/client_node.cpp)
 ament_target_dependencies(client_node rclcpp custom_srv_msg)
 
+add_executable(client_node_class src/client_node_class.cpp)
+ament_target_dependencies(client_node_class rclcpp custom_srv_msg)
+
 install(TARGETS
 	 service_node
 	 client_node
+	 client_node_class
    DESTINATION lib/${PROJECT_NAME}
  )
 
