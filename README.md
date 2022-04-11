@@ -17,6 +17,7 @@ All the folders cover a specific feature and there are their own CMakeLists.txt 
     * simple_subscriber_class_node.cpp
     * sub_pub_pipeline.cpp
     * publish_custom_message.cpp
+    * msg/EmployeeSalary.msg
 * 03 Custom msg and srv
     * srv/CapitalFullName.srv
 * 04 Service and client
