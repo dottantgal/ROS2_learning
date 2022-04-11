@@ -18,6 +18,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+set(msg_files
+  "msg/EmployeeSalary.msg"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -45,14 +54,22 @@ ament_target_dependencies(simple_subscriber_class_node rclcpp)
 add_executable(sub_pub_pipeline src/sub_pub_pipeline.cpp)
 ament_target_dependencies(sub_pub_pipeline rclcpp)
 
+add_executable(publisher_custom_message src/publisher_custom_message.cpp)
+ament_target_dependencies(publisher_custom_message rclcpp)
+
 install(TARGETS
 	 simple_subscriber_node
 	 simple_publisher_node
 	 simple_publisher_class_node
 	 simple_subscriber_class_node
 	 sub_pub_pipeline
+	 publisher_custom_message
    DESTINATION lib/${PROJECT_NAME}
  )
+
+rosidl_target_interfaces(
+	publisher_custom_message
+  ${PROJECT_NAME} rosidl_typesupport_cpp)
 
 ament_export_dependencies(rosidl_default_runtime)
 ament_package()
