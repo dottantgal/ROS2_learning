@@ -1,5 +1,5 @@
 /**
- * @file set_parameters.cpp
+ * @file parameters.cpp
  *
  * @brief A node to declare and get parameters
  *        Here the parameters are the message data for two publisher
