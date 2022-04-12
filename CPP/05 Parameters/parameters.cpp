@@ -1,7 +1,7 @@
 /**
  * @file set_parameters.cpp
  *
- * @brief A node to get and set parameters
+ * @brief A node to declare and get parameters
  *        Here the parameters are the message data for two publisher
  *        It's possible to change them at run time using the commad line
  *        "ros2 param set /set_parameter_node vehicle_speed 100"

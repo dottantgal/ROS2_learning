@@ -30,11 +30,11 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(set_parameters src/set_parameters.cpp)
-ament_target_dependencies(set_parameters rclcpp)
+add_executable(parameters src/parameters.cpp)
+ament_target_dependencies(parameters rclcpp)
 
 install(TARGETS
-	 set_parameters
+	 parameters
    DESTINATION lib/${PROJECT_NAME}
  )
 
