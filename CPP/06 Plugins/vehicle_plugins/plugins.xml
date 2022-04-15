@@ -1,0 +1,12 @@
+<!--With this file the systems knows where to find the plugin of the derived classes-->
+<library path="vehicle_plugins">
+  <class type="vehicle_plugins::Motorbike" base_class_type="vehicle_base::RegularVehicle">
+    <description>MotorBike plugin</description>
+  </class>
+  <class type="vehicle_plugins::Bicycle" base_class_type="vehicle_base::RegularVehicle">
+    <description>Bicycle plugin</description>
+  </class>
+  <class type="vehicle_plugins::Truck" base_class_type="vehicle_base::RegularVehicle">
+    <description>Truck plugin</description>
+  </class>
+</library>
