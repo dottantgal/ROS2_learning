@@ -27,5 +27,10 @@ All the folders cover a specific feature and there are their own CMakeLists.txt 
     * client_node_class.cpp
 * 05 Parameters
     * set_parameters.cpp
+* 06 Plugins
+    * vehicle_base/include/vehicle_base/regular_vehicle.hpp
+    * vechicle_base/src/create_vehicle.cpp
+    * vehicle_plugins/src/vehicle_plugins.cpp
+    * vehicle_plugins/plugins.xml
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
