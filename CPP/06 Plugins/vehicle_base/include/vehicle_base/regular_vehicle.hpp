@@ -1,3 +1,14 @@
+/**
+ * @file regular_vehicle.cpp
+ *
+ * @brief Definition of the base class which is derived through plugin
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
+
 #ifndef VEHICLE_BASE_REGULAR_VEHICLE_HPP
 #define VEHICLE_BASE_REGULAR_VEHICLE_HPP
 
