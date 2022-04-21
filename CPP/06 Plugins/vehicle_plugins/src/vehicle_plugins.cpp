@@ -1,3 +1,14 @@
+/**
+ * @file vehicle_plugins.cpp
+ *
+ * @brief Definition of the derived class that will be used as plugin
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
+
 #include "vehicle_base/regular_vehicle.hpp"
 
 // derived classes declaration which will be instanciated through pluginlib
