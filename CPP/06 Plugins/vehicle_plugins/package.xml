@@ -3,7 +3,7 @@
 <package format="3">
   <name>vehicle_plugins</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Plugin example</description>
   <maintainer email="user@todo.todo">Antonio Mauro Galiano</maintainer>
   <license>TODO: License declaration</license>
 
