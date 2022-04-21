@@ -1,0 +1,5 @@
+int16 num_concatenations
+---
+string final_concatenation
+---
+string partial_concatenation
