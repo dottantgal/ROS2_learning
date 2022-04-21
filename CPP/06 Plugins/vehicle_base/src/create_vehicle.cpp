@@ -1,3 +1,14 @@
+/**
+ * @file create_vehicle.cpp
+ *
+ * @brief Creation of derived objects through the available plugin
+ *
+ * @author Antonio Mauro Galiano
+ * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
+ *
+ */
+
+
 #include <pluginlib/class_loader.hpp>
 #include "vehicle_base/regular_vehicle.hpp"
 #include <iostream>
