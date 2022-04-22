@@ -1,4 +1,4 @@
-//**
+/**
  * @file simple_publisher_class_node.cpp
  *
  * @brief A basic publisher class node
