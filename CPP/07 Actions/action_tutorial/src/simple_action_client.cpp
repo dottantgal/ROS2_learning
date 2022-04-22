@@ -34,78 +34,78 @@ void FeedbackCallback(
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  auto client_node = rclcpp::Node::make_shared("simple_action_client");
+  auto clientNode = rclcpp::Node::make_shared("simple_action_client");
   // action client definition
   // be sure to set the same action name used for the server
-  auto action_client = rclcpp_action::create_client<Concatenate>(client_node, "concatenation");
+  auto actionClient = rclcpp_action::create_client<Concatenate>(clientNode, "concatenation");
 
   // waiting for the server online response
-  if (!action_client->wait_for_action_server(std::chrono::seconds(10)))
+  if (!actionClient->wait_for_action_server(std::chrono::seconds(10)))
   {
-    RCLCPP_ERROR(client_node->get_logger(), "!!ATTENTION!! Action server not available");
+    RCLCPP_ERROR(clientNode->get_logger(), "!!ATTENTION!! Action server not available");
     return 1;
   }
 
   // creation of the goal message
-  auto goal_msg = Concatenate::Goal();
-  goal_msg.num_concatenations = 9;  // the number of concatenation to perform
+  auto goalMsg = Concatenate::Goal();
+  goalMsg.num_concatenations = 9;  // the number of concatenation to perform
 
-  RCLCPP_INFO(client_node->get_logger(), "Sending goal");
+  RCLCPP_INFO(clientNode->get_logger(), "Sending goal");
   // ask server to achieve some goal and wait until it's accepted
   // here some options such as feedbacks are set
-  auto send_goal_options = rclcpp_action::Client<Concatenate>::SendGoalOptions();
+  auto sendGoalOptions = rclcpp_action::Client<Concatenate>::SendGoalOptions();
   // binding to make the logger available in the callback
   // otherwise is necessary to declare the node handle as global
-  send_goal_options.feedback_callback = std::bind(
-    FeedbackCallback, std::placeholders::_1, std::placeholders::_2, client_node->get_logger());
+  sendGoalOptions.feedback_callback = std::bind(
+    FeedbackCallback, std::placeholders::_1, std::placeholders::_2, clientNode->get_logger());
   
   // the goal is sent and the server answers, it's necessary a SUCCESS to continue the communication 
-  auto goal_handle_future = action_client->async_send_goal(goal_msg, send_goal_options);
-  if (rclcpp::spin_until_future_complete(client_node, goal_handle_future) !=
+  auto goalHandleFuture = actionClient->async_send_goal(goalMsg, sendGoalOptions);
+  if (rclcpp::spin_until_future_complete(clientNode, goalHandleFuture) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
-    RCLCPP_ERROR(client_node->get_logger(), "send goal call failed :(");
+    RCLCPP_ERROR(clientNode->get_logger(), "send goal call failed :(");
     return 1;
   }
 
   // the server elaborates the goal and decide to reject or not the goal
-  rclcpp_action::ClientGoalHandle<Concatenate>::SharedPtr goal_handle = goal_handle_future.get();
-  if (!goal_handle)
+  rclcpp_action::ClientGoalHandle<Concatenate>::SharedPtr goalHandle = goalHandleFuture.get();
+  if (!goalHandle)
   {
-    RCLCPP_ERROR(client_node->get_logger(), "Goal was rejected by server");
+    RCLCPP_ERROR(clientNode->get_logger(), "Goal was rejected by server");
     return 1;
   }
 
   // wait for the server to be done with the goal
-  auto result_future = action_client->async_get_result(goal_handle);
-  RCLCPP_INFO(client_node->get_logger(), "Waiting for result");
-  if (rclcpp::spin_until_future_complete(client_node, result_future) !=
+  auto resultFuture = actionClient->async_get_result(goalHandle);
+  RCLCPP_INFO(clientNode->get_logger(), "Waiting for result");
+  if (rclcpp::spin_until_future_complete(clientNode, resultFuture) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
-    RCLCPP_ERROR(client_node->get_logger(), "get result call failed :(");
+    RCLCPP_ERROR(clientNode->get_logger(), "get result call failed :(");
     return 1;
   }
 
   // the clients gets the final result from the server
-  rclcpp_action::ClientGoalHandle<Concatenate>::WrappedResult wrapped_result = result_future.get();
-  switch (wrapped_result.code)
+  rclcpp_action::ClientGoalHandle<Concatenate>::WrappedResult wrappedResult = resultFuture.get();
+  switch (wrappedResult.code)
   {
     case rclcpp_action::ResultCode::SUCCEEDED:
       break;
     case rclcpp_action::ResultCode::ABORTED:
-      RCLCPP_ERROR(client_node->get_logger(), "Goal was aborted");
+      RCLCPP_ERROR(clientNode->get_logger(), "Goal was aborted");
       return 1;
     case rclcpp_action::ResultCode::CANCELED:
-      RCLCPP_ERROR(client_node->get_logger(), "Goal was canceled");
+      RCLCPP_ERROR(clientNode->get_logger(), "Goal was canceled");
       return 1;
     default:
-      RCLCPP_ERROR(client_node->get_logger(), "Unknown result code");
+      RCLCPP_ERROR(clientNode->get_logger(), "Unknown result code");
       return 1;
   }
 
   // printout the result
-  RCLCPP_INFO(client_node->get_logger(), "concatenation received");
-  RCLCPP_INFO(client_node->get_logger(), "%s",  wrapped_result.result->final_concatenation.c_str());
+  RCLCPP_INFO(clientNode->get_logger(), "concatenation received");
+  RCLCPP_INFO(clientNode->get_logger(), "%s",  wrappedResult.result->final_concatenation.c_str());
 
   rclcpp::shutdown();
   return 0;
