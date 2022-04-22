@@ -13,8 +13,7 @@
 #include "custom_action/action/concatenate.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_action/rclcpp_action.hpp"
-#include "rclcpp_action/server.hpp"
-#include "rclcpp_action/server_goal_handle.hpp"
+
 
 using Concatenate = custom_action::action::Concatenate;
 using GoalHandleConcatenate = rclcpp_action::ServerGoalHandle<Concatenate>;
@@ -22,7 +21,7 @@ using GoalHandleConcatenate = rclcpp_action::ServerGoalHandle<Concatenate>;
 
 // response to the client goal request
 rclcpp_action::GoalResponse
-handle_goal(const rclcpp_action::GoalUUID &uuid,
+  HandleGoal(const rclcpp_action::GoalUUID &uuid,
             std::shared_ptr<const Concatenate::Goal> goal) 
 {
   RCLCPP_INFO(rclcpp::get_logger("server"),
@@ -41,21 +40,20 @@ handle_goal(const rclcpp_action::GoalUUID &uuid,
 }
 
 // response to cancel requests from the client
-rclcpp_action::CancelResponse 
-handle_cancel(const std::shared_ptr<GoalHandleConcatenate> goal_handle) 
+rclcpp_action::CancelResponse HandleCancel(const std::shared_ptr<GoalHandleConcatenate> goalHandle) 
 {
   RCLCPP_INFO(rclcpp::get_logger("server"), "Got request to cancel goal");
-  (void)goal_handle;
+  (void)goalHandle;
   return rclcpp_action::CancelResponse::ACCEPT;
 }
 
 
 // the goal is executed
-void execute(const std::shared_ptr<GoalHandleConcatenate> goal_handle) 
+void execute(const std::shared_ptr<GoalHandleConcatenate> goalHandle) 
 {
   RCLCPP_INFO(rclcpp::get_logger("server"), "Executing the concatenation");
   rclcpp::Rate loop_rate(1);
-  const auto goal = goal_handle->get_goal();
+  const auto goal = goalHandle->get_goal();
   auto feedback = std::make_shared<Concatenate::Feedback>();
   std::string myString = "HELLOWORLD";
   auto &concatenation = feedback->partial_concatenation;
@@ -66,17 +64,17 @@ void execute(const std::shared_ptr<GoalHandleConcatenate> goal_handle)
   for (int i = 1; (i < goal->num_concatenations) && rclcpp::ok(); ++i)
   {
     // check if there is a cancel request
-    if (goal_handle->is_canceling())
+    if (goalHandle->is_canceling())
     {
       result->final_concatenation = concatenation;
-      goal_handle->canceled(result);
+      goalHandle->canceled(result);
       RCLCPP_INFO(rclcpp::get_logger("server"), "Goal Canceled");
       return;
     }
     // update the final concatenation
     concatenation = concatenation + " " + myString;
     // update and publish feedback of the partial concatenation
-    goal_handle->publish_feedback(feedback);
+    goalHandle->publish_feedback(feedback);
     RCLCPP_INFO(rclcpp::get_logger("server"), "Publish Feedback");
 
     loop_rate.sleep();
@@ -86,16 +84,16 @@ void execute(const std::shared_ptr<GoalHandleConcatenate> goal_handle)
   if (rclcpp::ok())
   {
     result->final_concatenation = concatenation;
-    goal_handle->succeed(result);
+    goalHandle->succeed(result);
     RCLCPP_INFO(rclcpp::get_logger("server"), "Goal Succeeded");
   }
 }
 
-void handle_accepted(const std::shared_ptr<GoalHandleConcatenate> goal_handle)
+void HandleAccepted(const std::shared_ptr<GoalHandleConcatenate> goalHandle)
 {
   // this needs to return quickly to avoid blocking the executor
   // so spin up a new thread
-  std::thread{execute, goal_handle}.detach();
+  std::thread{execute, goalHandle}.detach();
 }
 
 int main(int argc, char **argv)
@@ -109,7 +107,7 @@ int main(int argc, char **argv)
   // accepting a goal
   // Calls to 'execute' are made in an available thread from a pool of four.
   auto action_server = rclcpp_action::create_server<Concatenate>(
-      node, "concatenation", handle_goal, handle_cancel, handle_accepted);
+      node, "concatenation", HandleGoal, HandleCancel, HandleAccepted);
 
   rclcpp::spin(node);
   rclcpp::shutdown();
