@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros2_test</name>
+  <name>parameters</name>
   <version>0.0.0</version>
-  <description>A useful collection of examples to learn ROS2 from zero</description>
+  <description>Example node di handle parameters</description>
   <maintainer email="foo@foo.foo">Antonio Mauro Galiano</maintainer>
   <license>TODO: License declaration</license>
 
