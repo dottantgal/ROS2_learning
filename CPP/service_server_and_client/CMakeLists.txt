@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ros2_test)
+project(service_server_and_client)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -18,7 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(custom_srv_msg REQUIRED)
+find_package(custom_msg_and_srv REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -32,16 +32,16 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(service_node src/service_node.cpp)
-ament_target_dependencies(service_node rclcpp custom_srv_msg)
+ament_target_dependencies(service_node rclcpp custom_msg_and_srv)
 
 add_executable(client_node src/client_node.cpp)
-ament_target_dependencies(client_node rclcpp custom_srv_msg)
+ament_target_dependencies(client_node rclcpp custom_msg_and_srv)
 
 add_executable(client_node_class src/client_node_class.cpp)
-ament_target_dependencies(client_node_class rclcpp custom_srv_msg)
+ament_target_dependencies(client_node_class rclcpp custom_msg_and_srv)
 
 add_executable(service_node_class src/service_node_class.cpp)
-ament_target_dependencies(service_node_class rclcpp custom_srv_msg)
+ament_target_dependencies(service_node_class rclcpp custom_msg_and_srv)
 
 install(TARGETS
 	 service_node

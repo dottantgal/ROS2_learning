@@ -4,7 +4,7 @@
  * @brief A basic ROS2 service client node with class implementation that asks the user 
  *        to input twostrings and gets back a capitalized full string from the server service.
  *        It's necessary to use the custom message defined in the external 
- *        package "Custom msg and srv"
+ *        package "custom_msg_and_srv"
  *
  * @author Antonio Mauro Galiano
  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
@@ -12,7 +12,7 @@
  */
 
 
-#include "custom_srv_msg/srv/capital_full_name.hpp"
+#include "custom_msg_and_srv/srv/capital_full_name.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 
@@ -24,14 +24,14 @@ class MyClientNode : public rclcpp::Node
 private:
   const std::string name_;
   const std::string surname_;
-  rclcpp::Client<custom_srv_msg::srv::CapitalFullName>::SharedPtr client_;
+  rclcpp::Client<custom_msg_and_srv::srv::CapitalFullName>::SharedPtr client_;
   void ServerResponse();
 
 public:
   MyClientNode(std::string passedNodeName="VOID", std::string passedName="VOID", std::string passedSurname="VOID")
     : Node(passedNodeName), name_(passedName), surname_(passedSurname)
   {
-    client_ = this->create_client<custom_srv_msg::srv::CapitalFullName>("create_cap_full_name");
+    client_ = this->create_client<custom_msg_and_srv::srv::CapitalFullName>("create_cap_full_name");
     this->ServerResponse();
   }
   
@@ -41,7 +41,7 @@ public:
 void MyClientNode::ServerResponse()
 {
   auto request =
-    std::make_shared<custom_srv_msg::srv::CapitalFullName::Request>();
+    std::make_shared<custom_msg_and_srv::srv::CapitalFullName::Request>();
 
   request->name = name_;
   request->surname = surname_;

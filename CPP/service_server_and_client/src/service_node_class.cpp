@@ -7,7 +7,7 @@
  *        package "Custom msg and srv"
  *        To call the service from a terminal use on a single line:
  *        ros2 service call /create_cap_full_name 
- *        custom_srv_msg/srv/CapitalFullName "{name: x, surname: y}"
+ *        custom_msg_and_srv/srv/CapitalFullName "{name: x, surname: y}"
  *
  * @author Antonio Mauro Galiano
  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
@@ -16,16 +16,16 @@
 
 
 #include "rclcpp/rclcpp.hpp"
-#include "custom_srv_msg/srv/capital_full_name.hpp"
+#include "custom_msg_and_srv/srv/capital_full_name.hpp"
 #include <boost/algorithm/string.hpp>
 
 
 class MyServiceNode : public rclcpp::Node
 {
 private:
-  rclcpp::Service<custom_srv_msg::srv::CapitalFullName>::SharedPtr service_;
-  void ComposeFullName(const std::shared_ptr<custom_srv_msg::srv::CapitalFullName::Request> request,
-        std::shared_ptr<custom_srv_msg::srv::CapitalFullName::Response> response);
+  rclcpp::Service<custom_msg_and_srv::srv::CapitalFullName>::SharedPtr service_;
+  void ComposeFullName(const std::shared_ptr<custom_msg_and_srv::srv::CapitalFullName::Request> request,
+        std::shared_ptr<custom_msg_and_srv::srv::CapitalFullName::Response> response);
 
 public:
   MyServiceNode(std::string passedNodeName="VOID")
@@ -34,7 +34,7 @@ public:
     RCLCPP_INFO(this->get_logger(), "I am ready to capitalize your full name");
     // like the subscriber class node it's needed the boost::bind to acces the member method 
     // with 2 placeholders to pass request and response to the callback
-    service_ = this->create_service<custom_srv_msg::srv::CapitalFullName>("create_cap_full_name", 
+    service_ = this->create_service<custom_msg_and_srv::srv::CapitalFullName>("create_cap_full_name", 
       std::bind(&MyServiceNode::ComposeFullName, this, std::placeholders::_1, std::placeholders::_2 ));
   }
   
@@ -42,8 +42,8 @@ public:
 
 // method to handle the client request and give back a response
 // the service gets the name and surname and responses with a capitalized full name
-void MyServiceNode::ComposeFullName(const std::shared_ptr<custom_srv_msg::srv::CapitalFullName::Request> request,
-        std::shared_ptr<custom_srv_msg::srv::CapitalFullName::Response> response)
+void MyServiceNode::ComposeFullName(const std::shared_ptr<custom_msg_and_srv::srv::CapitalFullName::Request> request,
+        std::shared_ptr<custom_msg_and_srv::srv::CapitalFullName::Response> response)
 {
   std::string fullName = request->name + " " + request->surname;
   std::string capitalFullName = boost::to_upper_copy<std::string>(fullName);
