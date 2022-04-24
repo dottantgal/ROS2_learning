@@ -3,8 +3,9 @@
 This repository has the goal to help the learning process of ROS2 basic, middle and advance features through a collection of example nodes ready to compile and use.
 All the nodes have been tested with ROS2 Foxy [to be continued]
 ## Folders tree
-All the folders cover a specific feature and include their own CMakeLists.txt and package.xml files
+All the subfolders cover a specific feature and include their own CMakeLists.txt and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
 ###### CPP
+This is an ideal path to follow
 * 01 Start with simple nodes
     * my_first_node.cpp
     * node_with_class.cpp
@@ -34,7 +35,9 @@ All the folders cover a specific feature and include their own CMakeLists.txt an
     * vehicle_plugins/plugins.xml
 * 07 Actions
     * action_tutorial/src/simple_action_client.cpp
+    * action_tutorial/src/class_action_client.cpp
     * action_tutorial/src/simple_action_server.cpp
+    * action_tutorial/src/class_action_server.cpp
     * custom_action/action/Concatenation.action
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
