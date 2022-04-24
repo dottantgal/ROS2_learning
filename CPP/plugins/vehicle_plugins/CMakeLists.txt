@@ -38,11 +38,6 @@ pluginlib_export_plugin_description_file(vehicle_base plugins.xml)
 target_compile_definitions(vehicle_plugins PRIVATE "VEHICLE_PLUGINS_BUILDING_LIBRARY")
 
 install(
-  DIRECTORY include/
-  DESTINATION include
-)
-
-install(
   TARGETS vehicle_plugins
   EXPORT export_${PROJECT_NAME}
   ARCHIVE DESTINATION lib
