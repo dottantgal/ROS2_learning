@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(custom_srv_msg)
+project(custom_msg_and_srv)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)

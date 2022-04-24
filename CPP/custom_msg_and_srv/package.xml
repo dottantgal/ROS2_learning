@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>custom_srv_msg</name>
+  <name>custom_msg_and_srv</name>
   <version>0.0.0</version>
   <description>Package to manage custom messages and services</description>
   <maintainer email="user@todo.todo">Antonio Mauro Galiano</maintainer>
