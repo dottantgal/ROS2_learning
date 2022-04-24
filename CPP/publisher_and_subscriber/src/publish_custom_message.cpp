@@ -12,7 +12,7 @@
 
 
 #include "rclcpp/rclcpp.hpp"
-#include "ros2_test/msg/employee_salary.hpp"
+#include "publisher_and_subscriber/msg/employee_salary.hpp"
 #include <string>
 #include <vector>
 
@@ -22,7 +22,7 @@ using namespace std::chrono_literals;
 
 class MyCustomMsgPublisher : public rclcpp::Node {
 private:
-  rclcpp::Publisher<ros2_test::msg::EmployeeSalary>::SharedPtr pub_;
+  rclcpp::Publisher<publisher_and_subscriber::msg::EmployeeSalary>::SharedPtr pub_;
   rclcpp::TimerBase::SharedPtr timer_;
   void TimerCallback();
   std::string name_;
@@ -30,7 +30,7 @@ private:
   bool gender_;
   std::vector<std::string> tasks_;
   int salary_;
-  ros2_test::msg::EmployeeSalary message_;
+  publisher_and_subscriber::msg::EmployeeSalary message_;
 
 public:
   MyCustomMsgPublisher(std::vector<std::string> passedTasks,
@@ -41,7 +41,7 @@ public:
     : Node(passedNodeName), name_(passedName), 
       surname_(passedSurname), salary_(passedSalary)
   {
-    pub_ = this->create_publisher<ros2_test::msg::EmployeeSalary>(
+    pub_ = this->create_publisher<publisher_and_subscriber::msg::EmployeeSalary>(
       "/employee_salary", 10);
     message_.name = name_;
     message_.surname = surname_;
