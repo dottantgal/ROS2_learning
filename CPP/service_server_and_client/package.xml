@@ -16,7 +16,7 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
-  <depend>custom_srv_msg</depend>
+  <depend>custom_msg_and_srv</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
