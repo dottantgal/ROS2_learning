@@ -38,6 +38,6 @@ This is an ideal path to follow
     * action_tutorial/src/class_action_client.cpp
     * action_tutorial/src/simple_action_server.cpp
     * action_tutorial/src/class_action_server.cpp
-    * custom_action/action/Concatenation.action
+    * custom_action/action/Concatenate.action
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
