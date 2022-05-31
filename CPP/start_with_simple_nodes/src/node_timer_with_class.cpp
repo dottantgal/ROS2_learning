@@ -1,5 +1,5 @@
 /**
- * @file node_with_class_and_timer.cpp
+ * @file node_timer_with_class.cpp
  *
  * @brief A basic ROS2 node implemented with class that spins
  *        and printouts a string based on a timer
