@@ -1,7 +1,7 @@
 /**
- * @file simple_subscriber_node.cpp
+ * @file simple_publisher_node.cpp
  *
- * @brief A basic subscriber node
+ * @brief A basic publisher node
  *        Not recommend this style, composition of multiple nodes in the 
  *        same executable is not possible. Example purpose
  *        It's useful to look how to use WallRate and exceptions
