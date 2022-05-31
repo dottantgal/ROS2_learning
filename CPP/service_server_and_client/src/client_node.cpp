@@ -69,7 +69,7 @@ int main(int argc, char **argv)
   auto result = client->async_send_request(request);
   
   // spins waiting for the SUCCESS result
-  if (rclcpp::spin_until_future_complete(node, result) == rclcpp::executor::FutureReturnCode::SUCCESS)
+  if (rclcpp::spin_until_future_complete(node, result) == rclcpp::FutureReturnCode::SUCCESS)
   {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), 
       "Capitalized full name: %s", result.get()->capitalfullname.c_str());

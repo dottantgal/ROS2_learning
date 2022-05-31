@@ -64,7 +64,7 @@ void MyClientNode::ServerResponse()
   // to allow the client spinning for a server response
   // it returns the needed rclcpp::node_interfaces::NodeBaseInterface::SharedPtr 
   if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result) ==
-      rclcpp::executor::FutureReturnCode::SUCCESS)
+      rclcpp::FutureReturnCode::SUCCESS)
   {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Capitalized full name: %s",
                 result.get()->capitalfullname.c_str());
