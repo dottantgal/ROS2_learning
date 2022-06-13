@@ -56,7 +56,7 @@ void MySetParameterClass::TimerCallback()
   messageString.data=typeVehicleParam_;
   std_msgs::msg::Int16 messageInt;
   messageInt.data=velocityParam_;
-  RCLCPP_INFO(this->get_logger(), "Publishing two messages -> vehicle type %s\tVehicle speed %ld",
+  RCLCPP_INFO(this->get_logger(), "Publishing two messages -> vehicle type %s\tVehicle speed %d",
     typeVehicleParam_.c_str(), velocityParam_);
   pubInt_->publish(messageInt);
   pubString_->publish(messageString);
