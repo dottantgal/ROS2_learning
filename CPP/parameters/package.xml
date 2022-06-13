@@ -3,7 +3,7 @@
 <package format="3">
   <name>parameters</name>
   <version>0.0.0</version>
-  <description>Example node di handle parameters</description>
+  <description>Example node to handle parameters</description>
   <maintainer email="foo@foo.foo">Antonio Mauro Galiano</maintainer>
   <license>TODO: License declaration</license>
 
