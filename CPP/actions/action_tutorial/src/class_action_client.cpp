@@ -127,7 +127,7 @@ void ConcatenateActionClient::ResultCallback(const GoalHandleConcatenate::Wrappe
   RCLCPP_INFO(this->get_logger(), "Result received");
   for (auto number : result.result->final_concatenation)
   {
-    RCLCPP_INFO(this->get_logger(), "%s", number);
+    RCLCPP_INFO(this->get_logger(), "%d", number);
   }
 }
 
