@@ -39,5 +39,7 @@ This is an ideal path to follow
     * action_tutorial/src/simple_action_server.cpp
     * action_tutorial/src/class_action_server.cpp
     * custom_action/action/Concatenate.action
+* 08 Message sync
+	  * message_sync/src/message_sync.cpp
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
