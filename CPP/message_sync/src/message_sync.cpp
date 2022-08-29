@@ -88,8 +88,7 @@ void MessageSync::pclTopicCallback(const PointCloud2Type::ConstSharedPtr msg)
   {
     PointCloud2Type newMsg;
 
-    newMsg.data = msg->data;
-    newMsg.header.frame_id = msg->header.frame_id;
+    newMsg = *msg;
     newMsg.header.stamp = rclcpp::Clock().now();
     
     RCLCPP_INFO(this->get_logger(),"Received pcl and published with clock().now()");
