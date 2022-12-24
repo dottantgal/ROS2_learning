@@ -1,5 +1,5 @@
 # ROS2 C++ learning
-##### _A useful collection of rclcpp examples to dive into ROS2_
+##### _A useful collection of rclcpp and rclpy examples to dive into ROS2_
 This repository has the goal to help the learning process of ROS2 basic, middle and advance features through a collection of example nodes ready to compile and use.
 All the nodes have been tested with ROS2 Foxy [to be continued]
 ## Folders tree
