@@ -42,4 +42,12 @@ This is an ideal path to follow
 * 08 Message sync
     * message_sync/src/message_sync.cpp
 
+###### PYTHON
+This is an ideal path to follow
+* 01 Start with simple nodes py
+    * my_first_node.cpp
+    * node_with_class.cpp
+    * node_timer_without_class.cpp
+    * node_timer_with_class.cpp
+
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
