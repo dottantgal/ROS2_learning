@@ -1,7 +1,7 @@
 # ROS2 C++ PYTHON learning
 ##### _A useful collection of rclcpp and rclpy examples to dive into ROS2_
 This repository has the goal to help the learning process of ROS2 basic, middle and advance features through a collection of example nodes ready to compile and use.
-All the nodes have been tested with ROS2 Foxy [to be continued]
+All the nodes have been tested with ROS2 Foxy for rclcpp and ROS2 Humble for rclpy
 ## Folders tree
 All the subfolders cover a specific feature and include their own CMakeLists.txt and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
 ###### CPP
