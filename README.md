@@ -44,6 +44,7 @@ This is an ideal path to follow
     * message_sync/src/message_sync.cpp
 
 ###### PYTHON
+All the subfolders cover a specific feature and include their own setup.py and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
 This is an ideal path to follow
 * 01 Start with simple nodes py
     * my_first_node.cpp
