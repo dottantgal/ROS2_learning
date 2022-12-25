@@ -13,9 +13,9 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='tonio',
-    maintainer_email='antoniomauro.galiano@gmail.com',
-    description='TODO: Package description',
+    maintainer='Antonio Mauro Galiano',
+    maintainer_email='tonio@todo.todo',
+    description='Example nodes to understand publisher and subscriber',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

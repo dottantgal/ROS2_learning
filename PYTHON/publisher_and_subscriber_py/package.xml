@@ -3,8 +3,8 @@
 <package format="3">
   <name>publisher_and_subscriber_py</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="antoniomauro.galiano@gmail.com">tonio</maintainer>
+  <description>Example nodes to understand publisher and subscriber</description>
+  <maintainer email="tonio@todo.todo">Antonio Mauro Galiano</maintainer>
   <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>
