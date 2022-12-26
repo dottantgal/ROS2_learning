@@ -6,7 +6,7 @@ All the nodes have been tested with ROS2 Foxy for rclcpp and ROS2 Humble for rcl
 
 ###### CPP
 All the subfolders cover a specific feature and include their own CMakeLists.txt and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
-This is an ideal path to follow
+
 * 01 Start with simple nodes
     * my_first_node.cpp
     * node_with_class.cpp
@@ -45,11 +45,16 @@ This is an ideal path to follow
 
 ###### PYTHON
 All the subfolders cover a specific feature and include their own setup.py and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
-This is an ideal path to follow
+
 * 01 Start with simple nodes py
     * my_first_node.cpp
     * node_with_class.cpp
     * node_timer_without_class.cpp
     * node_timer_with_class.cpp
+* 02 Publisher and subscriber
+    * simple_publisher_node.cpp
+    * simple_subscriber_node.cpp
+    * simple_publisher_class_node.cpp
+    * simple_subscriber_class_node.cpp
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
