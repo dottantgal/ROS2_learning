@@ -22,7 +22,8 @@ setup(
         'console_scripts': [
             'simple_publisher_node = publisher_and_subscriber_py.simple_publisher_node:main',
             'simple_publisher_class_node = publisher_and_subscriber_py.simple_publisher_class_node:main',
-            'simple_subscriber_node = publisher_and_subscriber_py.simple_subscriber_node:main'
+            'simple_subscriber_node = publisher_and_subscriber_py.simple_subscriber_node:main',
+            'simple_subscriber_class_node = publisher_and_subscriber_py.simple_subscriber_class_node:main'
         ],
     },
 )
