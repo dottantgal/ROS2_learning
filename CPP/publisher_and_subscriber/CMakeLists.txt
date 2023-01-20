@@ -18,7 +18,6 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 set(msg_files
@@ -41,19 +40,19 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(simple_subscriber_node src/simple_subscriber_node.cpp)
-ament_target_dependencies(simple_subscriber_node rclcpp std_msgs)
+ament_target_dependencies(simple_subscriber_node rclcpp)
 
 add_executable(simple_publisher_node src/simple_publisher_node.cpp)
-ament_target_dependencies(simple_publisher_node rclcpp std_msgs)
+ament_target_dependencies(simple_publisher_node rclcpp)
 
 add_executable(simple_publisher_class_node src/simple_publisher_class_node.cpp)
-ament_target_dependencies(simple_publisher_class_node rclcpp std_msgs)
+ament_target_dependencies(simple_publisher_class_node rclcpp)
 
 add_executable(simple_subscriber_class_node src/simple_subscriber_class_node.cpp)
-ament_target_dependencies(simple_subscriber_class_node rclcpp std_msgs)
+ament_target_dependencies(simple_subscriber_class_node rclcpp)
 
 add_executable(sub_pub_pipeline src/sub_pub_pipeline.cpp)
-ament_target_dependencies(sub_pub_pipeline rclcpp std_msgs)
+ament_target_dependencies(sub_pub_pipeline rclcpp)
 
 add_executable(publish_custom_message src/publish_custom_message.cpp)
 ament_target_dependencies(publish_custom_message rclcpp)
