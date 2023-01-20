@@ -18,7 +18,6 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -32,7 +31,7 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(parameters src/parameters.cpp)
-ament_target_dependencies(parameters rclcpp std_msgs)
+ament_target_dependencies(parameters rclcpp)
 
 install(TARGETS
 	 parameters
