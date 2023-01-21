@@ -51,7 +51,7 @@ private:
   void ResultCallback(const GoalHandleConcatenate::WrappedResult & result);
   // be sure to define the parameter as it's here
   // more info at the declaration
-  void GoalResponseCallback(std::shared_future<GoalHandleConcatenate::SharedPtr> future);
+  void GoalResponseCallback(const GoalHandleConcatenate::SharedPtr &goalHandle);
 };
 
 
@@ -135,9 +135,8 @@ void ConcatenateActionClient::ResultCallback(const GoalHandleConcatenate::Wrappe
 // it's wrong for the send_goal_options.goal_response_callback
 // so it doesnt compile
 void ConcatenateActionClient::GoalResponseCallback(
-  std::shared_future<GoalHandleConcatenate::SharedPtr> future)
+  const GoalHandleConcatenate::SharedPtr &goalHandle)
   {
-    auto goalHandle = future.get();
     if (!goalHandle)
     {
       RCLCPP_ERROR(this->get_logger(), "Goal was rejected by server");
