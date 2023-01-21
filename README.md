@@ -42,6 +42,12 @@ All the subfolders cover a specific feature and include their own CMakeLists.txt
     * custom_action/action/Concatenate.action
 * 08 Message sync
     * message_sync/src/message_sync.cpp
+* 09 Create library with header file
+    * publisher_library/src/publisher_library.cpp
+    * use_library/src/use_library.cpp
+* 10 TF2 dynamic broadcaster
+    * dynamic_tf2_publisher/src/tf2_publisher.cpp
+    * dynamic_tf2_publisher/src/tf2_publisher_node.cpp
 
 ###### PYTHON
 All the subfolders cover a specific feature and include their own setup.py and package.xml files, so you can copy and paste the single subfolder unit and put it into your ROS2 workspace to compile them
