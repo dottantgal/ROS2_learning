@@ -67,10 +67,12 @@ install(TARGETS
    DESTINATION lib/${PROJECT_NAME}
  )
 
+# THESE LINES FOR CUSTOM MESSAGES BEFORE HUMBLE 
 # rosidl_target_interfaces(
 # 	publish_custom_message
 #   ${PROJECT_NAME} rosidl_typesupport_cpp)
 
+# THESE LINES FOR CUSTOM MESSAGES FROM HUMBLE
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
 target_link_libraries(publish_custom_message "${cpp_typesupport_target}") 
 
