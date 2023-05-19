@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../build/ros2_cv/ros2_cv.egg-info/PKG-INFO
+../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt
+../build/ros2_cv/ros2_cv.egg-info/dependency_links.txt
+../build/ros2_cv/ros2_cv.egg-info/entry_points.txt
+../build/ros2_cv/ros2_cv.egg-info/requires.txt
+../build/ros2_cv/ros2_cv.egg-info/top_level.txt
+../build/ros2_cv/ros2_cv.egg-info/zip-safe
+resource/ros2_cv
+ros2_cv/__init__.py
+ros2_cv/face_detection.py
+ros2_cv/open_cv_integration.py
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
