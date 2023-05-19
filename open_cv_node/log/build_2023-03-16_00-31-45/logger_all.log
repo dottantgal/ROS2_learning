@@ -1,0 +1,114 @@
+[0.113s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.113s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fc437ef5d60>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=8, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fc437ef5d60>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fc437f02310>)
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.129s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.129s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/magnum/opencv_ws/src'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.145s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extension 'ignore_ament_install'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extensions ['colcon_pkg']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extension 'colcon_pkg'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extensions ['colcon_meta']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extension 'colcon_meta'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extensions ['ros']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(ros2_cv) by extension 'ros'
+[0.148s] DEBUG:colcon.colcon_core.package_identification:Package 'ros2_cv' with type 'ros.ament_python' and name 'ros2_cv'
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.163s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.163s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.166s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/magnum/opencv_ws/install
+[0.167s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/magnum/simuate_ws/install
+[0.168s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 390 installed packages in /opt/ros/foxy
+[0.170s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_target' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_clean_cache' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_clean_first' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'cmake_force_configure' from command line to 'False'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'ament_cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'catkin_cmake_args' from command line to 'None'
+[0.223s] Level 5:colcon.colcon_core.verb:set package 'ros2_cv' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.223s] DEBUG:colcon.colcon_core.verb:Building package 'ros2_cv' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/magnum/opencv_ws/src/build/ros2_cv', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/magnum/opencv_ws/src/install/ros2_cv', 'merge_install': False, 'path': '/home/magnum/opencv_ws/src/ros2_cv', 'symlink_install': False, 'test_result_base': None}
+[0.224s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.227s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.227s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/magnum/opencv_ws/src/ros2_cv' with build type 'ament_python'
+[0.227s] Level 1:colcon.colcon_core.shell:create_environment_hook('ros2_cv', 'ament_prefix_path')
+[0.231s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.231s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/ament_prefix_path.ps1'
+[0.232s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/ament_prefix_path.dsv'
+[0.232s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/ament_prefix_path.sh'
+[0.234s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.234s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.448s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/magnum/opencv_ws/src/ros2_cv'
+[0.450s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.451s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.797s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/magnum/opencv_ws/src/ros2_cv': PYTHONPATH=/home/magnum/opencv_ws/src/build/ros2_cv/prefix_override:/home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/ros2_cv build --build-base /home/magnum/opencv_ws/src/build/ros2_cv/build install --record /home/magnum/opencv_ws/src/build/ros2_cv/install.log --install-scripts $base/lib/ros2_cv --single-version-externally-managed
+[1.051s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/magnum/opencv_ws/src/ros2_cv' returned '0': PYTHONPATH=/home/magnum/opencv_ws/src/build/ros2_cv/prefix_override:/home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/ros2_cv build --build-base /home/magnum/opencv_ws/src/build/ros2_cv/build install --record /home/magnum/opencv_ws/src/build/ros2_cv/install.log --install-scripts $base/lib/ros2_cv --single-version-externally-managed
+[1.056s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv' for CMake module files
+[1.056s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv' for CMake config files
+[1.057s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv/lib'
+[1.057s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv/bin'
+[1.057s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv/lib/pkgconfig/ros2_cv.pc'
+[1.057s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages'
+[1.057s] Level 1:colcon.colcon_core.shell:create_environment_hook('ros2_cv', 'pythonpath')
+[1.058s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/pythonpath.ps1'
+[1.058s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/pythonpath.dsv'
+[1.059s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/hook/pythonpath.sh'
+[1.059s] Level 1:colcon.colcon_core.environment:checking '/home/magnum/opencv_ws/src/install/ros2_cv/bin'
+[1.059s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ros2_cv)
+[1.060s] INFO:colcon.colcon_core.shell:Creating package script '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/package.ps1'
+[1.060s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/package.dsv'
+[1.061s] INFO:colcon.colcon_core.shell:Creating package script '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/package.sh'
+[1.061s] INFO:colcon.colcon_core.shell:Creating package script '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/package.bash'
+[1.062s] INFO:colcon.colcon_core.shell:Creating package script '/home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv/package.zsh'
+[1.062s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/magnum/opencv_ws/src/install/ros2_cv/share/colcon-core/packages/ros2_cv)
+[1.062s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.063s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.063s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.063s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.068s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.068s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.068s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.081s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.083s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/magnum/opencv_ws/src/install/local_setup.ps1'
+[1.084s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/magnum/opencv_ws/src/install/_local_setup_util_ps1.py'
+[1.086s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/magnum/opencv_ws/src/install/setup.ps1'
+[1.088s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/magnum/opencv_ws/src/install/local_setup.sh'
+[1.089s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/magnum/opencv_ws/src/install/_local_setup_util_sh.py'
+[1.089s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/magnum/opencv_ws/src/install/setup.sh'
+[1.091s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/magnum/opencv_ws/src/install/local_setup.bash'
+[1.091s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/magnum/opencv_ws/src/install/setup.bash'
+[1.094s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/magnum/opencv_ws/src/install/local_setup.zsh'
+[1.094s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/magnum/opencv_ws/src/install/setup.zsh'

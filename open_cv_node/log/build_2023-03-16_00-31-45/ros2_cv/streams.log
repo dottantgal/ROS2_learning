@@ -1,0 +1,41 @@
+[0.569s] Invoking command in '/home/magnum/opencv_ws/src/ros2_cv': PYTHONPATH=/home/magnum/opencv_ws/src/build/ros2_cv/prefix_override:/home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/ros2_cv build --build-base /home/magnum/opencv_ws/src/build/ros2_cv/build install --record /home/magnum/opencv_ws/src/build/ros2_cv/install.log --install-scripts $base/lib/ros2_cv --single-version-externally-managed
+[0.755s] running egg_info
+[0.755s] creating ../build/ros2_cv/ros2_cv.egg-info
+[0.756s] writing ../build/ros2_cv/ros2_cv.egg-info/PKG-INFO
+[0.756s] writing dependency_links to ../build/ros2_cv/ros2_cv.egg-info/dependency_links.txt
+[0.756s] writing entry points to ../build/ros2_cv/ros2_cv.egg-info/entry_points.txt
+[0.756s] writing requirements to ../build/ros2_cv/ros2_cv.egg-info/requires.txt
+[0.756s] writing top-level names to ../build/ros2_cv/ros2_cv.egg-info/top_level.txt
+[0.757s] writing manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+[0.781s] reading manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+[0.782s] writing manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+[0.782s] running build
+[0.782s] running build_py
+[0.782s] creating /home/magnum/opencv_ws/src/build/ros2_cv/build
+[0.782s] creating /home/magnum/opencv_ws/src/build/ros2_cv/build/lib
+[0.782s] creating /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+[0.782s] copying ros2_cv/__init__.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+[0.782s] copying ros2_cv/open_cv_integration.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+[0.782s] copying ros2_cv/face_detection.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+[0.782s] running install
+[0.783s] running install_lib
+[0.784s] creating /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+[0.784s] copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/__init__.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+[0.784s] copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/open_cv_integration.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+[0.784s] copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/face_detection.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+[0.784s] byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/__init__.py to __init__.cpython-38.pyc
+[0.785s] byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/open_cv_integration.py to open_cv_integration.cpython-38.pyc
+[0.785s] byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/face_detection.py to face_detection.cpython-38.pyc
+[0.786s] running install_data
+[0.786s] creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index
+[0.786s] creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index
+[0.786s] creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index/packages
+[0.786s] copying resource/ros2_cv -> /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index/packages
+[0.786s] copying package.xml -> /home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv
+[0.786s] running install_egg_info
+[0.787s] Copying ../build/ros2_cv/ros2_cv.egg-info to /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv-0.0.0-py3.8.egg-info
+[0.788s] running install_scripts
+[0.801s] Installing face_detection script to /home/magnum/opencv_ws/src/install/ros2_cv/lib/ros2_cv
+[0.801s] Installing integration script to /home/magnum/opencv_ws/src/install/ros2_cv/lib/ros2_cv
+[0.801s] writing list of installed files to '/home/magnum/opencv_ws/src/build/ros2_cv/install.log'
+[0.823s] Invoked command in '/home/magnum/opencv_ws/src/ros2_cv' returned '0': PYTHONPATH=/home/magnum/opencv_ws/src/build/ros2_cv/prefix_override:/home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/ros2_cv build --build-base /home/magnum/opencv_ws/src/build/ros2_cv/build install --record /home/magnum/opencv_ws/src/build/ros2_cv/install.log --install-scripts $base/lib/ros2_cv --single-version-externally-managed
