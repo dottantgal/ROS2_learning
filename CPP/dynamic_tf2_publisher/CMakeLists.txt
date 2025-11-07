@@ -20,6 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -40,10 +41,8 @@ add_executable(tf2_publisher_node src/tf2_publisher.cpp src/tf2_publisher_node.c
 ament_target_dependencies(tf2_publisher_node
   rclcpp
   tf2_ros
-  tf2_geometry_msgs)
-target_link_libraries(tf2_publisher_node
-  ${PCL_LIBRARIES}
-)
+  tf2_geometry_msgs
+  geometry_msgs)
 
 install(TARGETS
   tf2_publisher_node

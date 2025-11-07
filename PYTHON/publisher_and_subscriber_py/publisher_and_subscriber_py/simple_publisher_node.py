@@ -21,7 +21,7 @@ def main(args=None):
     msg = String()
     publisher = node.create_publisher(String, 'topic', 10)
     counter = 0
-    rate = node.create_rate(2)
+    rate = rclpy.create_rate(2, node.get_clock())
 
     while rclpy.ok():
         msg.data = "Hello, world! " + str(counter)
@@ -31,7 +31,7 @@ def main(args=None):
             counter = counter + 1
             rclpy.spin_once(node)
         except Exception as e:
-            node.get_logger.info("Errore type : " + str(e))
+            node.get_logger().info("Error type: " + str(e))
         rate.sleep()
     
     node.destroy_node()

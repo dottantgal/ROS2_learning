@@ -18,6 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -31,8 +32,8 @@ target_include_directories(publisher_library PUBLIC
   ${rclcpp_INCLUDE_DIRS}
 )
 
-ament_target_dependencies(publisher_library rclcpp)
-ament_export_dependencies(rclcpp)
+ament_target_dependencies(publisher_library rclcpp std_msgs)
+ament_export_dependencies(rclcpp std_msgs)
 ament_export_targets(export_publisher_library HAS_LIBRARY_TARGET)
 
 install(
