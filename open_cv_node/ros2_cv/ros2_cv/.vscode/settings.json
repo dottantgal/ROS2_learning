@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/magnum/opencv_ws/install/ros2_cv/lib/python3.8/site-packages",
+        "/home/magnum/simuate_ws/install/drive_robot/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ]
+}

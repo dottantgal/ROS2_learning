@@ -1,0 +1,39 @@
+running egg_info
+creating ../build/ros2_cv/ros2_cv.egg-info
+writing ../build/ros2_cv/ros2_cv.egg-info/PKG-INFO
+writing dependency_links to ../build/ros2_cv/ros2_cv.egg-info/dependency_links.txt
+writing entry points to ../build/ros2_cv/ros2_cv.egg-info/entry_points.txt
+writing requirements to ../build/ros2_cv/ros2_cv.egg-info/requires.txt
+writing top-level names to ../build/ros2_cv/ros2_cv.egg-info/top_level.txt
+writing manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+reading manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+writing manifest file '../build/ros2_cv/ros2_cv.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/magnum/opencv_ws/src/build/ros2_cv/build
+creating /home/magnum/opencv_ws/src/build/ros2_cv/build/lib
+creating /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+copying ros2_cv/__init__.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+copying ros2_cv/open_cv_integration.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+copying ros2_cv/face_detection.py -> /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv
+running install
+running install_lib
+creating /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/__init__.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/open_cv_integration.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+copying /home/magnum/opencv_ws/src/build/ros2_cv/build/lib/ros2_cv/face_detection.py -> /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv
+byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/open_cv_integration.py to open_cv_integration.cpython-38.pyc
+byte-compiling /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv/face_detection.py to face_detection.cpython-38.pyc
+running install_data
+creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index
+creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index
+creating /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index/packages
+copying resource/ros2_cv -> /home/magnum/opencv_ws/src/install/ros2_cv/share/ament_index/resource_index/packages
+copying package.xml -> /home/magnum/opencv_ws/src/install/ros2_cv/share/ros2_cv
+running install_egg_info
+Copying ../build/ros2_cv/ros2_cv.egg-info to /home/magnum/opencv_ws/src/install/ros2_cv/lib/python3.8/site-packages/ros2_cv-0.0.0-py3.8.egg-info
+running install_scripts
+Installing face_detection script to /home/magnum/opencv_ws/src/install/ros2_cv/lib/ros2_cv
+Installing integration script to /home/magnum/opencv_ws/src/install/ros2_cv/lib/ros2_cv
+writing list of installed files to '/home/magnum/opencv_ws/src/build/ros2_cv/install.log'
