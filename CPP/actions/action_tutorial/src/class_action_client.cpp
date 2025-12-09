@@ -125,10 +125,7 @@ void ConcatenateActionClient::ResultCallback(const GoalHandleConcatenate::Wrappe
   }
 
   RCLCPP_INFO(this->get_logger(), "Result received");
-  for (auto number : result.result->final_concatenation)
-  {
-    RCLCPP_INFO(this->get_logger(), "%d", number);
-  }
+  RCLCPP_INFO(this->get_logger(), "%s", result.result->final_concatenation.c_str());
 }
 
 // defining the parameter directly as a GoalHandleConcatenate::SharedPtr goalHandle
