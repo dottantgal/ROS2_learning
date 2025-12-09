@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Client node consuming the CapitalFullName service."""
 
 import sys
@@ -6,7 +7,7 @@ from typing import Optional
 import rclpy
 from rclpy.node import Node
 
-from custom_msg_and_srv_py.srv import CapitalFullName
+from custom_msg_and_srv.srv import CapitalFullName
 
 
 class CapitalFullNameClient(Node):
@@ -38,7 +39,7 @@ def main(args=None) -> None:
         name = sys.argv[1] if len(sys.argv) > 1 else 'john'
         surname = sys.argv[2] if len(sys.argv) > 2 else 'doe'
         capitalised = node.send_request(name, surname)
-        node.get_logger().info('Capital full name: "%s"', capitalised)
+        node.get_logger().info(f'Capital full name: "{capitalised}"')
     except Exception as exc:  # noqa: BLE001
         node.get_logger().error('Failed to complete request: %s', exc)
         raise

@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
 """Service node that returns the capitalised full name."""
 
 import rclpy
 from rclpy.node import Node
 
 from custom_msg_and_srv_py.formatting import build_capital_full_name
-from custom_msg_and_srv_py.srv import CapitalFullName
+from custom_msg_and_srv.srv import CapitalFullName
 
 
 class CapitalFullNameServer(Node):
@@ -22,10 +23,7 @@ class CapitalFullNameServer(Node):
         _, _, capital_full_name = build_capital_full_name(request.name, request.surname)
         response.capitalfullname = capital_full_name
         self.get_logger().info(
-            'Request: name="%s" surname="%s" -> "%s"',
-            request.name,
-            request.surname,
-            response.capitalfullname,
+            f'Request: name="{request.name}" surname="{request.surname}" -> "{response.capitalfullname}"'
         )
         return response
 
