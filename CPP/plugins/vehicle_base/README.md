@@ -33,7 +33,33 @@ Abstract base class with pure virtual methods:
 - `getVehicleType()` - Return vehicle type string
 
 ## Usage
-This package provides the base class. See `vehicle_plugins` for implementations and `create_vehicle.cpp` for usage examples.
+
+This package provides the base class and an example executable. To use it:
+
+1. **Build both packages together**:
+   ```bash
+   colcon build --packages-select vehicle_base vehicle_plugins
+   source install/setup.bash
+   ```
+
+2. **Run the example**:
+   ```bash
+   ros2 run vehicle_base create_vehicle
+   ```
+
+3. **Expected output**:
+   ```
+   First vehicle type is -> motorbike
+   Second vehicle type is -> bicycle
+   The plugin failed to load for some reason. Error: [error message for Rocket]
+   ```
+
+The `create_vehicle` executable demonstrates:
+- Loading plugins dynamically using `pluginlib::ClassLoader`
+- Creating instances of `Motorbike` and `Bicycle` plugins
+- Handling plugin loading errors (trying to load non-existent `Rocket` plugin)
+
+See `vehicle_plugins` package for the actual plugin implementations.
 
 ## Key Concepts
 - **Abstract Base Class**: Pure virtual functions define the interface

@@ -32,15 +32,65 @@ source install/setup.bash
 
 ## Usage
 
-### Loading Plugins Programmatically
-See `vehicle_base/src/create_vehicle.cpp` for examples of loading and using plugins.
+### Running the Plugin Example
+
+1. **Build both packages** (vehicle_base must be built first):
+   ```bash
+   colcon build --packages-select vehicle_base vehicle_plugins
+   source install/setup.bash
+   ```
+
+2. **Run the example**:
+   ```bash
+   ros2 run vehicle_base create_vehicle
+   ```
+
+3. **Expected output**:
+   ```
+   First vehicle type is -> motorbike
+   Second vehicle type is -> bicycle
+   The plugin failed to load for some reason. Error: [error details for Rocket]
+   ```
+
+### Available Plugins
+
+You can load any of these plugins:
+- `vehicle_plugins::Motorbike` - 2 passengers
+- `vehicle_plugins::Bicycle` - 1 passenger  
+- `vehicle_plugins::Truck` - 5 passengers
+
+### Loading Plugins in Your Code
+
+Example of loading and using a plugin:
+```cpp
+#include <pluginlib/class_loader.hpp>
+#include "vehicle_base/regular_vehicle.hpp"
+
+pluginlib::ClassLoader<vehicle_base::RegularVehicle> loader(
+    "vehicle_base", "vehicle_base::RegularVehicle");
+
+// Load a plugin
+auto vehicle = loader.createUniqueInstance("vehicle_plugins::Motorbike");
+vehicle->initialize("motorbike");
+std::cout << "Type: " << vehicle->getVehicleType() << std::endl;
+std::cout << "Passengers: " << vehicle->setNumPassengers() << std::endl;
+```
 
 ### Plugin Registration
+
 Plugins are registered in `plugins.xml`:
 ```xml
-<class type="vehicle_plugins::Motorbike" base_class_type="vehicle_base::RegularVehicle">
-  <description>MotorBike plugin</description>
-</class>
+<library path="vehicle_plugins">
+  <class type="vehicle_plugins::Motorbike" base_class_type="vehicle_base::RegularVehicle">
+    <description>MotorBike plugin</description>
+  </class>
+  <class type="vehicle_plugins::Bicycle" base_class_type="vehicle_base::RegularVehicle">
+    <description>Bicycle plugin</description>
+  </class>
+  <class type="vehicle_plugins::Truck" base_class_type="vehicle_base::RegularVehicle">
+    <description>Truck plugin</description>
+  </class>
+</library>
 ```
 
 ## Key Concepts
