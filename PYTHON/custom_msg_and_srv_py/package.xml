@@ -3,22 +3,14 @@
 <package format="3">
   <name>custom_msg_and_srv_py</name>
   <version>0.0.0</version>
-  <description>Python package providing the CapitalFullName service definition and example nodes.</description>
+  <description>Python package with example nodes using the CapitalFullName service from custom_msg_and_srv.</description>
   <maintainer email="antoniomauro.galiano@gmail.com">Antonio Mauro Galiano</maintainer>
   <license>TODO: License declaration</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-
-  <build_depend>ament_cmake_python</build_depend>
-  <build_depend>rclpy</build_depend>
-  <build_depend>rosidl_default_generators</build_depend>
-
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>rosidl_default_runtime</exec_depend>
-
-  <member_of_group>rosidl_interface_packages</member_of_group>
+  <depend>rclpy</depend>
+  <depend>custom_msg_and_srv</depend>
 
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>ament_python</build_type>
   </export>
 </package>

@@ -10,13 +10,12 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/srv', ['srv/CapitalFullName.srv']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Antonio Mauro Galiano',
     maintainer_email='antoniomauro.galiano@gmail.com',
-    description='Capital full name service definition with example server and client nodes.',
+    description='Python example nodes using the CapitalFullName service from custom_msg_and_srv.',
     license='TODO: License declaration',
     entry_points={
         'console_scripts': [
