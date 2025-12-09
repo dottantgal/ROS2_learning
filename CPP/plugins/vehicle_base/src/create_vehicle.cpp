@@ -22,7 +22,8 @@ int main(int argc, char** argv)
   pluginlib::ClassLoader<vehicle_base::RegularVehicle> VehiclePluginLoader(
   "vehicle_base", "vehicle_base::RegularVehicle");
 
- try
+  std::cout << "=== Loading Available Plugins ===" << std::endl;
+  try
   {
     // the istance of the derived class Motorbike is created through the plugin as shared ptr
     // and it's called the initialize method setting the vehicle type to "motorbike"
@@ -39,16 +40,20 @@ int main(int argc, char** argv)
     // from the base class using the plugin
     std::cout << "First vehicle type is -> " << motorbike->getVehicleType() << std::endl;
     std::cout << "Second vehicle type is -> " << bicycle->getVehicleType() << std::endl;
+    std::cout << "✓ Successfully loaded Motorbike and Bicycle plugins" << std::endl;
   }
   catch(pluginlib::PluginlibException& ex)
   {
-    std::cout << "The plugin failed to load for some reason. Error: " << ex.what() << std::endl;
+    std::cerr << "ERROR: The plugin failed to load. Error: " << ex.what() << std::endl;
+    return 1;
   }
 
-   try
+  std::cout << "\n=== Demonstrating Error Handling (Intentional) ===" << std::endl;
+  std::cout << "Attempting to load non-existent 'Rocket' plugin..." << std::endl;
+  try
   {
     // here is trying to initialize a shared ptr of a derived class which is not available with
-    // the created plugin, so it gives an error
+    // the created plugin, so it gives an error - this is intentional to demonstrate error handling
     std::shared_ptr<vehicle_base::RegularVehicle> rocket = VehiclePluginLoader.createUniqueInstance("vehicle_plugins::Rocket");
     rocket->initialize("rocket");
 
@@ -56,7 +61,8 @@ int main(int argc, char** argv)
   }
   catch(pluginlib::PluginlibException& ex)
   {
-    std::cout << "The plugin failed to load for some reason. Error: " << ex.what() << std::endl;
+    std::cout << "Expected error caught: " << ex.what() << std::endl;
+    std::cout << "✓ Error handling works correctly - plugin system properly rejects non-existent plugins" << std::endl;
   }
 
   return 0;
