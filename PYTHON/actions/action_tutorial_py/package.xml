@@ -9,7 +9,7 @@
 
   <depend>rclpy</depend>
   <depend>rclpy.action</depend>
-  <depend>custom_action_py</depend>
+  <depend>custom_action</depend>
 
   <export>
     <build_type>ament_python</build_type>

@@ -13,7 +13,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from custom_action_py.action import Concatenate
+from custom_action.action import Concatenate
 
 
 class ConcatenateActionClient(Node):
