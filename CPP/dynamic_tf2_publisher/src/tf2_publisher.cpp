@@ -28,8 +28,11 @@ Tf2Publisher::Tf2Publisher() :  Node("tf2_dynamic_pub_node")
 
 Tf2Publisher::~Tf2Publisher()
 {
-  RCLCPP_INFO_STREAM(this->get_logger(), "Stopped the dynamic TF2 publisher node");
-  tfBroadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
+  // Don't try to create new resources during shutdown
+  // The tfBroadcaster_ will be automatically cleaned up via RAII
+  if (rclcpp::ok()) {
+    RCLCPP_INFO_STREAM(this->get_logger(), "Stopped the dynamic TF2 publisher node");
+  }
 }
 
 
