@@ -154,8 +154,10 @@ Packages are organized from simple to complex:
 ### ROS 2 Jazzy Compatible
 All packages are tested and verified for ROS 2 Jazzy:
 - Updated APIs and patterns
-- Modern C++14+ and Python 3.8+ support
+- Modern C++17 standard (Jazzy recommendation) and Python 3.8+ support
 - Jazzy-specific features and best practices
+- Modern parameter API (`get_parameter().as_<type>()`)
+- CMake 3.8+ requirement
 
 ---
 

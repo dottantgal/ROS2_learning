@@ -43,10 +43,14 @@ All test files have been removed from Python packages as requested:
 ### API Compatibility
 - All packages use Jazzy-compatible APIs
 - Action server/client implementations follow Jazzy patterns
-- Parameter handling uses current Jazzy API
+- Parameter handling uses modern Jazzy API:
+  - Updated from `get_parameter(name, variable)` to `get_parameter(name).as_<type>()`
+  - Using `as_string()`, `as_int()`, `as_double()` methods
+- Updated parameter types from `float` to `double` for better precision
 
 ### Build System
-- C++ packages: `ament_cmake` with C++14 standard
+- C++ packages: `ament_cmake` with C++17 standard (Jazzy recommendation)
+- CMake minimum version: 3.8 (updated from 3.5)
 - Python packages: `ament_python` with proper `setup.py` configuration
 - All packages use package format 3
 
@@ -100,11 +104,32 @@ All Python packages are new implementations:
   - Key concepts
   - File descriptions
 
+## Jazzy-Specific Improvements Applied
+
+### 1. C++ Standard Update
+- ✅ Updated all CMakeLists.txt from C++14 to C++17 (Jazzy recommendation)
+- ✅ All 13 C++ packages updated
+
+### 2. CMake Version Update
+- ✅ Updated minimum CMake version from 3.5 to 3.8 (Jazzy requirement)
+- ✅ All 13 C++ packages + 1 Python action package updated
+
+### 3. Parameter API Modernization
+- ✅ Updated `parameters` package: `get_parameter(name, var)` → `get_parameter(name).as_<type>()`
+- ✅ Updated `dynamic_tf2_publisher` package: Modern parameter API with type conversion
+- ✅ Changed parameter types from `float` to `double` for better precision
+
+### 4. Code Quality
+- ✅ All packages follow Jazzy best practices
+- ✅ Action servers/clients use modern interface-based patterns
+- ✅ Python packages use modern `.value` accessor for parameters
+
 ## Next Steps
 1. ✅ All packages converted
 2. ✅ Documentation complete
-3. ✅ Jazzy branch merged to main
-4. ⚠️ Set jazzy as default branch on GitHub (requires web interface)
+3. ✅ Jazzy-specific improvements applied
+4. ✅ Jazzy branch merged to main
+5. ⚠️ Set jazzy as default branch on GitHub (requires web interface)
 
 ## Notes
 - The repository maintains both C++ and Python implementations side-by-side

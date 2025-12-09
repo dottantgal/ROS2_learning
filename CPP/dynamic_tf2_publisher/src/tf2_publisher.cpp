@@ -18,7 +18,8 @@ Tf2Publisher::Tf2Publisher() :  Node("tf2_dynamic_pub_node")
   RCLCPP_INFO_STREAM(this->get_logger(), "Starting the dynamic TF2 publisher node");
   tfBroadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
   declareParams();
-  this->get_parameter("loop_rate", loopRate_);
+  // Using modern Jazzy parameter API
+  loopRate_ = this->get_parameter("loop_rate").as_int();
   timer_ = this->create_wall_timer(
             std::chrono::milliseconds(loopRate_),
             std::bind(&Tf2Publisher::TimerCallback,this));
@@ -36,12 +37,12 @@ void Tf2Publisher::declareParams()
 {
   this->declare_parameter<std::string>("parent_frame", "");
   this->declare_parameter<std::string>("child_frame",  "");
-  this->declare_parameter<float>("x", 0.0);
-  this->declare_parameter<float>("y", 0.0);
-  this->declare_parameter<float>("z", 0.0);
-  this->declare_parameter<float>("roll", 0.0);
-  this->declare_parameter<float>("pitch", 0.0);
-  this->declare_parameter<float>("yaw", 0.0);
+  this->declare_parameter<double>("x", 0.0);
+  this->declare_parameter<double>("y", 0.0);
+  this->declare_parameter<double>("z", 0.0);
+  this->declare_parameter<double>("roll", 0.0);
+  this->declare_parameter<double>("pitch", 0.0);
+  this->declare_parameter<double>("yaw", 0.0);
 
   this->declare_parameter<int>("loop_rate", 50);
 }
@@ -49,14 +50,15 @@ void Tf2Publisher::declareParams()
 
 void Tf2Publisher::TimerCallback()
 {
-  this->get_parameter("parent_frame", parentFrame_);
-  this->get_parameter("child_frame", childFrame_);
-  this->get_parameter("x", xPos_);
-  this->get_parameter("y", yPos_);
-  this->get_parameter("z", zPos_);
-  this->get_parameter("roll", roll_);
-  this->get_parameter("pitch", pitch_);
-  this->get_parameter("yaw", yaw_);
+  // Using modern Jazzy parameter API
+  parentFrame_ = this->get_parameter("parent_frame").as_string();
+  childFrame_ = this->get_parameter("child_frame").as_string();
+  xPos_ = this->get_parameter("x").as_double();
+  yPos_ = this->get_parameter("y").as_double();
+  zPos_ = this->get_parameter("z").as_double();
+  roll_ = this->get_parameter("roll").as_double();
+  pitch_ = this->get_parameter("pitch").as_double();
+  yaw_ = this->get_parameter("yaw").as_double();
 
   transform_.header.frame_id = parentFrame_;
   transform_.child_frame_id = childFrame_;

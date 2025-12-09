@@ -50,8 +50,9 @@ void MySetParameterClass::TimerCallback()
 {
   // here the params get their value from outside
   // such as a set command or a launch file
-  this->get_parameter("vehicle_type", typeVehicleParam_);
-  this->get_parameter("vehicle_speed", velocityParam_);
+  // Using modern Jazzy parameter API
+  typeVehicleParam_ = this->get_parameter("vehicle_type").as_string();
+  velocityParam_ = this->get_parameter("vehicle_speed").as_int();
   std_msgs::msg::String messageString;
   messageString.data=typeVehicleParam_;
   std_msgs::msg::Int16 messageInt;

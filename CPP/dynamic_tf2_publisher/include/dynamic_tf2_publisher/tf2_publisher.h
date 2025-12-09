@@ -27,7 +27,7 @@ public:
 
 private:
   std::string parentFrame_, childFrame_;
-  float xPos_, yPos_, zPos_, roll_, pitch_, yaw_;
+  double xPos_, yPos_, zPos_, roll_, pitch_, yaw_;
   int loopRate_;
   tf2::Quaternion quat_;
   std::unique_ptr<tf2_ros::TransformBroadcaster> tfBroadcaster_;
