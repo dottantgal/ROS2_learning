@@ -93,13 +93,12 @@ Python equivalents live under their own packages and install via `setup.py`. All
 | ------ | ---------- | ------ |
 | `start_with_simple_nodes_py` | Introductory `rclpy` nodes (timers, logging, class vs. functional style). | [README](PYTHON/start_with_simple_nodes_py/README.md) |
 | `publisher_and_subscriber_py` | Publisher/subscriber examples, including class-based nodes and exception-aware loops. | [README](PYTHON/publisher_and_subscriber_py/README.md) |
-| `custom_msg_and_srv_py` | Custom service definition with example server and client nodes. | [README](PYTHON/custom_msg_and_srv_py/README.md) |
+| `custom_msg_and_srv_py` | Python example nodes using custom services from `custom_msg_and_srv`. | [README](PYTHON/custom_msg_and_srv_py/README.md) |
 | `service_server_and_client_py` | Service server and client examples in Python. | [README](PYTHON/service_server_and_client_py/README.md) |
 | `parameters_py` | Parameter handling examples in Python. | [README](PYTHON/parameters_py/README.md) |
 | `plugins/vehicle_base_py` | Base abstract class for Python plugin system using `abc` module. | [README](PYTHON/plugins/vehicle_base_py/README.md) |
 | `plugins/vehicle_plugins_py` | Concrete plugin implementations using setuptools entry points. | [README](PYTHON/plugins/vehicle_plugins_py/README.md) |
-| `actions/action_tutorial_py` | Action clients/servers in Python. | [README](PYTHON/actions/action_tutorial_py/README.md) |
-| `actions/custom_action_py` | Custom action definition for Python. | [README](PYTHON/actions/custom_action_py/README.md) |
+| `actions/action_tutorial_py` | Action clients/servers in Python using custom actions from `custom_action`. | [README](PYTHON/actions/action_tutorial_py/README.md) |
 | `message_sync_py` | Message synchronization using `message_filters` in Python. | [README](PYTHON/message_sync_py/README.md) |
 | `create_library_with_header_py/publisher_library_py` | Building a reusable Python library/module. | [README](PYTHON/create_library_with_header_py/publisher_library_py/README.md) |
 | `create_library_with_header_py/use_library_py` | Consuming a Python library from another package. | [README](PYTHON/create_library_with_header_py/use_library_py/README.md) |
