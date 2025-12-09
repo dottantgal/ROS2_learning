@@ -17,7 +17,6 @@ setup(
     maintainer_email='tonio@todo.todo',
     description='First ROS2 nodes examples',
     license='TODO: License declaration',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'my_first_node = start_with_simple_nodes_py.my_first_node:main',

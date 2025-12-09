@@ -17,7 +17,6 @@ setup(
     maintainer_email='tonio@todo.todo',
     description='Example nodes to understand publisher and subscriber',
     license='TODO: License declaration',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'simple_publisher_node = publisher_and_subscriber_py.simple_publisher_node:main',

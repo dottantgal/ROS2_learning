@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'custom_msg_and_srv_py'
+package_name = 'service_server_and_client_py'
 
 setup(
     name=package_name,
@@ -10,18 +10,20 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/srv', ['srv/CapitalFullName.srv']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Antonio Mauro Galiano',
-    maintainer_email='antoniomauro.galiano@gmail.com',
-    description='Capital full name service definition with example server and client nodes.',
+    maintainer_email='foo@foo.foo',
+    description='Example nodes to create service server and service client',
     license='TODO: License declaration',
     entry_points={
         'console_scripts': [
-            'capital_full_name_server = custom_msg_and_srv_py.capital_full_name_server:main',
-            'capital_full_name_client = custom_msg_and_srv_py.capital_full_name_client:main',
+            'service_node = service_server_and_client_py.service_node:main',
+            'client_node = service_server_and_client_py.client_node:main',
+            'service_node_class = service_server_and_client_py.service_node_class:main',
+            'client_node_class = service_server_and_client_py.client_node_class:main',
         ],
     },
 )
+
