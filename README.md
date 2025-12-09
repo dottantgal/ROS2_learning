@@ -14,6 +14,34 @@ This repository collects C++ and Python packages designed to illustrate the core
 ---
 
 ## Getting Started
+
+### Option 1: Using Docker (Recommended for Quick Setup)
+
+The easiest way to get started is using the provided Docker environment:
+
+```bash
+# Build the Docker image (one time)
+cd docker
+./build_image.sh
+
+# Run the container
+./run_container.sh
+
+# Inside the container: copy packages and build
+cp -r /mnt/ros2_learning/CPP/* ~/ros2_ws/src/  # if repository is mounted
+# OR copy from your mounted path
+cd ~/ros2_ws
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+source install/setup.bash
+```
+
+For detailed Docker instructions, see [docker/README.md](docker/README.md).
+
+### Option 2: Native Installation
+
+If you have ROS 2 Jazzy installed natively:
+
 ```bash
 # create (or reuse) a colcon workspace
 mkdir -p ~/ros2_ws/src

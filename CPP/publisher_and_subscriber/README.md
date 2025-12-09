@@ -48,7 +48,14 @@ ros2 run publisher_and_subscriber simple_subscriber_class_node
 ### Publisher-Subscriber Pipeline
 A node that both publishes and subscribes:
 ```bash
+# Terminal 1: Run the pipeline (subscribes to /my_message, publishes to /my_mod_message)
 ros2 run publisher_and_subscriber sub_pub_pipeline
+
+# Terminal 2: Run a publisher to feed the pipeline
+ros2 run publisher_and_subscriber simple_publisher_class_node
+
+# Terminal 3: View the modified messages
+ros2 topic echo /my_mod_message
 ```
 
 ### Custom Message Publisher
