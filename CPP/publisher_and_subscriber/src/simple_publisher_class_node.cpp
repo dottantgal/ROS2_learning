@@ -36,6 +36,10 @@ public:
 
 void MyPublisher::TimerCallback()
 {
+  if (!rclcpp::ok()) {
+    return;
+  }
+  
   std_msgs::msg::String message;    // message to publish of String type
   // the line above can be written as "auto message = std_msgs::msg::String();"
   message.data = "Hello, world! " + std::to_string(counter_++);   // the data of the message
@@ -48,10 +52,17 @@ int main(int argc, char **argv)
   rclcpp::init(argc, argv);
   // node declaration of class MyPublisher passing the name of the node and the counter init value
   auto node = std::make_shared<MyPublisher>("my_publisher_node", 0);
-  rclcpp::spin(node);
+  
+  try {
+    rclcpp::spin(node);
+  } catch (const std::exception& e) {
+    RCLCPP_ERROR(node->get_logger(), "Exception in spin: %s", e.what());
+  }
   // it's possibile to define the two lines above using just one
   // rclcpp::spin(std::make_shared<MyPublisher>())
 
+  // Graceful shutdown: node will clean up timer and publisher automatically via RAII
+  node.reset();
   rclcpp::shutdown();
   return 0;
 }

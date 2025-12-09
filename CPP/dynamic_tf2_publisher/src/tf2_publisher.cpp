@@ -50,6 +50,10 @@ void Tf2Publisher::declareParams()
 
 void Tf2Publisher::TimerCallback()
 {
+  if (!rclcpp::ok()) {
+    return;
+  }
+  
   // Using modern Jazzy parameter API
   parentFrame_ = this->get_parameter("parent_frame").as_string();
   childFrame_ = this->get_parameter("child_frame").as_string();

@@ -48,6 +48,10 @@ public:
 
 void MySetParameterClass::TimerCallback()
 {
+  if (!rclcpp::ok()) {
+    return;
+  }
+  
   // here the params get their value from outside
   // such as a set command or a launch file
   // Using modern Jazzy parameter API
@@ -68,7 +72,15 @@ int main(int argc, char** argv)
 {
   rclcpp::init(argc, argv);
   auto node = std::make_shared<MySetParameterClass>();
-  rclcpp::spin(node);
+  
+  try {
+    rclcpp::spin(node);
+  } catch (const std::exception& e) {
+    RCLCPP_ERROR(node->get_logger(), "Exception in spin: %s", e.what());
+  }
+  
+  // Graceful shutdown: node will clean up timer and publishers automatically via RAII
+  node.reset();
   rclcpp::shutdown();
   return 0;
 }

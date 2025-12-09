@@ -59,6 +59,10 @@ public:
 
 void MyCustomMsgPublisher::TimerCallback()
 {
+  if (!rclcpp::ok()) {
+    return;
+  }
+  
   RCLCPP_INFO(this->get_logger(), "Publishing to the topic");
   pub_->publish(message_); 
 }
@@ -87,7 +91,15 @@ int main(int argc, char *argv[]) {
   std::cin >> salary;
   auto node = std::make_shared<MyCustomMsgPublisher>(
       tasks, "custom_msg_publisher", name, surname, salary);
-  rclcpp::spin(node);
+  
+  try {
+    rclcpp::spin(node);
+  } catch (const std::exception& e) {
+    RCLCPP_ERROR(node->get_logger(), "Exception in spin: %s", e.what());
+  }
+  
+  // Graceful shutdown: node will clean up timer and publisher automatically via RAII
+  node.reset();
   rclcpp::shutdown();
   return 0;
 }

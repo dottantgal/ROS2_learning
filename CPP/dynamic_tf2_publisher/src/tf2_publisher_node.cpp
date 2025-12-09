@@ -16,7 +16,15 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
   auto node = std::make_shared<Tf2Publisher>();
-  rclcpp::spin(node);
+  
+  try {
+    rclcpp::spin(node);
+  } catch (const std::exception& e) {
+    RCLCPP_ERROR(node->get_logger(), "Exception in spin: %s", e.what());
+  }
+  
+  // Graceful shutdown: node will clean up timer and broadcaster automatically via RAII
+  node.reset();
   rclcpp::shutdown();
   return 0;
 }
