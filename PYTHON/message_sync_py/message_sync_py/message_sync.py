@@ -44,10 +44,11 @@ class MessageSync(Node):
         self.camera_info_sub_filter_ = Subscriber(self, CameraInfo, '/camera/camera_info')
         
         # Initialize the synchronizer with approximate time policy
-        # The queue size is 10
+        # The queue size is 10, slop is 0.1 seconds (time tolerance for synchronization)
         self.sync = ApproximateTimeSynchronizer(
             [self.pcl_sub_filter_, self.camera_info_sub_filter_],
-            10
+            10,  # queue_size
+            0.1  # slop: time tolerance in seconds for approximate time synchronization
         )
         self.sync.registerCallback(self.sync_message_callback)
     
