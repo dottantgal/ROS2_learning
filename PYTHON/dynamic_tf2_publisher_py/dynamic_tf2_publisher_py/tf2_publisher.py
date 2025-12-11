@@ -9,11 +9,46 @@
 #  *
 #
 
+import math
 import rclpy
 from rclpy.node import Node
 from tf2_ros import TransformBroadcaster
 from geometry_msgs.msg import TransformStamped
-from tf_transformations import quaternion_from_euler
+
+
+def quaternion_from_euler(ai, aj, ak):
+    """
+    Convert Euler angles (roll, pitch, yaw) to quaternion (x, y, z, w).
+    Based on the ROS 2 Jazzy tutorial implementation.
+    
+    Args:
+        ai: Roll (rotation around x-axis) in radians
+        aj: Pitch (rotation around y-axis) in radians
+        ak: Yaw (rotation around z-axis) in radians
+    
+    Returns:
+        Tuple (x, y, z, w) representing the quaternion
+    """
+    ai /= 2.0
+    aj /= 2.0
+    ak /= 2.0
+    ci = math.cos(ai)
+    si = math.sin(ai)
+    cj = math.cos(aj)
+    sj = math.sin(aj)
+    ck = math.cos(ak)
+    sk = math.sin(ak)
+    cc = ci * ck
+    cs = ci * sk
+    sc = si * ck
+    ss = si * sk
+
+    qx = cj * sc - sj * cs
+    qy = cj * ss + sj * cc
+    qz = cj * cs - sj * sc
+    qw = cj * cc + sj * ss
+
+    return (qx, qy, qz, qw)
 
 
 class Tf2Publisher(Node):
@@ -53,6 +88,18 @@ class Tf2Publisher(Node):
         roll = self.get_parameter('roll').value
         pitch = self.get_parameter('pitch').value
         yaw = self.get_parameter('yaw').value
+
+        # Check if frame IDs are set
+        if not parent_frame or not child_frame:
+            # Only log warning once to avoid spam
+            if not hasattr(self, '_frame_warning_logged'):
+                self.get_logger().warn(
+                    'parent_frame and child_frame parameters must be set. '
+                    'Use --ros-args -p parent_frame:=<frame> -p child_frame:=<frame> '
+                    'or use the launch file with parameters.'
+                )
+                self._frame_warning_logged = True
+            return
 
         # Set transform header and frame IDs
         self._transform.header.frame_id = parent_frame

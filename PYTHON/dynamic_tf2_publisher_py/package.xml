@@ -10,7 +10,6 @@
   <depend>rclpy</depend>
   <depend>tf2_ros</depend>
   <depend>geometry_msgs</depend>
-  <depend>tf_transformations</depend>
 
   <export>
     <build_type>ament_python</build_type>
