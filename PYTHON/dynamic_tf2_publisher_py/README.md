@@ -15,7 +15,8 @@ Learn TF2 transformation publishing in Python:
 - ROS2 Jazzy installed and sourced
 - `colcon` build tools
 - Python 3.8 or higher
-- `tf2_ros` and `tf_transformations` packages
+- `tf2_ros` package
+- **Note**: `tf_transformations` is not available in Jazzy - quaternion conversion is implemented manually
 
 ## Building
 ```bash
@@ -65,9 +66,10 @@ ros2 run tf2_ros tf2_echo map base_link
 ## Key Concepts
 - **Transform Broadcaster**: `TransformBroadcaster` from `tf2_ros` for publishing transforms
 - **Transform Stamped**: `geometry_msgs.msg.TransformStamped` message type
-- **Quaternion Conversion**: Converting RPY to quaternion using `tf_transformations.quaternion_from_euler()`
+- **Quaternion Conversion**: Converting RPY to quaternion using manual implementation (Jazzy doesn't include `tf_transformations`)
 - **Dynamic Parameters**: Parameters can be changed at runtime
-- **Launch Files**: Using Python launch files for parameter configuration
+- **Launch Files**: Using Python launch files with `LaunchConfiguration` for parameter configuration
+- **Empty Frame Validation**: Node validates that parent_frame and child_frame are set before publishing
 
 ## Files
 - `tf2_publisher.py` - TF2 publisher implementation

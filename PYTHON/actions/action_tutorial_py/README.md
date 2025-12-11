@@ -73,11 +73,37 @@ ros2 action send_goal /concatenation \
 ## Key Concepts
 - **Action Server**: `ActionServer(node, ActionType, action_name, execute_callback, ...)`
 - **Action Client**: `ActionClient(node, ActionType, action_name)`
-- **Goal Handling**: `goal_callback` to accept/reject goals
-- **Cancel Handling**: `cancel_callback` for cancellation requests
-- **Execution**: `execute_callback` runs the action logic
-- **Feedback**: `goal_handle.publish_feedback()` to send progress updates
-- **Result**: `goal_handle.succeed()`, `canceled()`, or `abort()` to finish
+- **Goal Handling**: `goal_callback` to accept/reject goals (returns `GoalResponse.ACCEPT` or `GoalResponse.REJECT`)
+- **Cancel Handling**: `cancel_callback` for cancellation requests (returns `CancelResponse.ACCEPT` or `CancelResponse.REJECT`)
+- **Execution**: `execute_callback` runs the action logic and returns the result object
+- **Feedback**: `goal_handle.publish_feedback(feedback_msg)` to send progress updates
+- **Result**: `goal_handle.succeed()` or `goal_handle.canceled()` (called without arguments), then return result from execute callback
+
+## Jazzy-Specific API Notes
+
+### Action Server (Jazzy API)
+- `goal_handle.succeed()` and `goal_handle.canceled()` are called **without** the result parameter
+- The execute callback must **return** the result object:
+  ```python
+  def execute_callback(self, goal_handle):
+      result = Concatenate.Result()
+      result.final_concatenation = concatenation
+      goal_handle.succeed()  # No result parameter
+      return result  # Return result from callback
+  ```
+
+### Action Client (Jazzy API)
+- Import `GoalStatus` from `action_msgs.msg` (not `rclpy.action`):
+  ```python
+  from action_msgs.msg import GoalStatus
+  if wrapped_result.status == GoalStatus.STATUS_SUCCEEDED:
+      # Handle success
+  ```
+- Feedback callback receives a `FeedbackMessage` object - access feedback via `feedback.feedback.field_name`:
+  ```python
+  def feedback_callback(self, feedback):
+      self.get_logger().info(f'Feedback: {feedback.feedback.partial_concatenation}')
+  ```
 
 ## Action Definition
 Uses `Concatenate` action from `custom_action` package:

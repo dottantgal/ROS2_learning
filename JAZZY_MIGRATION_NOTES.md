@@ -161,6 +161,61 @@ All Python packages are new implementations:
 - ✅ Removed duplicate `custom_action_py` package - Python action packages now depend on `custom_action` (C++)
 - ✅ Updated all imports and package.xml dependencies accordingly
 
+#### Action Server API Changes
+- ❌ **Deprecated in Jazzy**: `goal_handle.succeed(result)` and `goal_handle.canceled(result)` with result parameter
+- ✅ **New Jazzy API**: `goal_handle.succeed()` and `goal_handle.canceled()` called without arguments
+- ✅ **New Jazzy API**: Execute callback must return the result object instead of setting `goal_handle.result`
+- ✅ Pattern:
+  ```python
+  def execute_callback(self, goal_handle):
+      result = Concatenate.Result()
+      result.final_concatenation = concatenation
+      goal_handle.succeed()  # No result parameter
+      return result  # Return result from callback
+  ```
+- ✅ For cancellation: `goal_handle.canceled()` then `return result`
+
+#### Action Client API Changes
+- ❌ **Deprecated in Jazzy**: `rclpy.action.GoalStatus` (does not exist)
+- ✅ **New Jazzy API**: Import `GoalStatus` from `action_msgs.msg`
+  ```python
+  from action_msgs.msg import GoalStatus
+  if wrapped_result.status == GoalStatus.STATUS_SUCCEEDED:
+      # Handle success
+  ```
+- ✅ **Feedback Callback Change**: Feedback callback receives a `FeedbackMessage` object
+- ✅ Access feedback via `feedback.feedback.field_name` (not `feedback.field_name`)
+  ```python
+  def feedback_callback(self, feedback):
+      self.get_logger().info(f'Feedback: {feedback.feedback.partial_concatenation}')
+  ```
+
+#### Message Synchronization API
+- ❌ **Deprecated in Jazzy**: `ApproximateTimeSynchronizer(subscribers, queue_size)` without slop
+- ✅ **New Jazzy API**: `ApproximateTimeSynchronizer(subscribers, queue_size, slop)`
+  ```python
+  self.sync = ApproximateTimeSynchronizer(
+      [sub1, sub2],
+      10,  # queue_size
+      0.1  # slop parameter (required in Jazzy)
+  )
+  ```
+
+#### TF2 Transformations
+- ❌ **Removed in Jazzy**: `tf_transformations` package (not available)
+- ✅ **Solution**: Manual implementation of `quaternion_from_euler` using `math` module
+- ✅ Pattern:
+  ```python
+  import math
+  
+  def quaternion_from_euler(roll, pitch, yaw):
+      # Manual implementation using standard formulas
+      cy = math.cos(yaw * 0.5)
+      sy = math.sin(yaw * 0.5)
+      # ... (full implementation)
+      return (qx, qy, qz, qw)
+  ```
+
 ### Build Order
 When building packages that depend on custom interfaces:
 1. Build the C++ interface package first: `colcon build --packages-select custom_msg_and_srv`

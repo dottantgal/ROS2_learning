@@ -47,16 +47,18 @@ You'll need to publish messages to the topics for synchronization to occur. The 
 
 ## Key Concepts
 - **Message Filters**: `Subscriber` from `message_filters` for filtered subscriptions
-- **Synchronizer**: `ApproximateTimeSynchronizer` with queue size
+- **Synchronizer**: `ApproximateTimeSynchronizer` with queue size and slop parameter (required in Jazzy)
 - **Approximate Time Sync**: Matches messages with similar timestamps (within a tolerance)
 - **Queue Size**: Controls how many messages to buffer for synchronization
+- **Slop Parameter**: Time tolerance in seconds for matching messages (required in Jazzy, e.g., 0.1)
 - **Timestamp Alignment**: Important when working with bag files
 
 ## Synchronization Policy
 Uses `ApproximateTimeSynchronizer` which:
-- Matches messages with timestamps within a tolerance window
+- Matches messages with timestamps within a tolerance window (slop parameter)
 - Useful when messages don't arrive at exactly the same time
 - Queue size of 10 messages
+- **Jazzy Requirement**: Must specify `slop` parameter (time tolerance in seconds, e.g., 0.1)
 
 ## Files
 - `message_sync.py` - Message synchronization node
