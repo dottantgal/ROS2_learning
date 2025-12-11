@@ -22,9 +22,16 @@ def main(args=None):
     rclpy.init(args=args)
     node = Node('my_first_node_timer')
     timer = node.create_timer(0.2, timer_callback)
-    rclpy.spin(node)
-    node.destroy_timer(timer)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            node.get_logger().info("Shutting down node...")
+    finally:
+        node.destroy_timer(timer)
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

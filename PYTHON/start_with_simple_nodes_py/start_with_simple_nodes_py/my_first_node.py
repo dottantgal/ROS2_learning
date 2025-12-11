@@ -24,9 +24,15 @@ def main(args=None):
     # Pause the program execution here, but any created thread/timer  
     # in the node will continue to be executed as well as the calling to any callback 
     # function defined for the node, allowing the node to communicate with other nodes.
-    rclpy.spin(node)
-    # kill the node, the spin function will exit, and any callback won’t be callable anymore.
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass  # KeyboardInterrupt is handled gracefully
+    finally:
+        # kill the node, the spin function will exit, and any callback won't be callable anymore.
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

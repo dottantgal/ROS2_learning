@@ -84,10 +84,12 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info('Stopped the dynamic TF2 publisher node')
+        if rclpy.ok():
+            node.get_logger().info('Stopped the dynamic TF2 publisher node')
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

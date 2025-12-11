@@ -98,10 +98,16 @@ def main(args=None):
     rclpy.init(args=args)
     action_client = ConcatenateActionClient()
 
-    while not action_client.goal_done():
-        rclpy.spin_once(action_client, timeout_sec=0.1)
-
-    rclpy.shutdown()
+    try:
+        while not action_client.goal_done():
+            rclpy.spin_once(action_client, timeout_sec=0.1)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            action_client.get_logger().info("Interrupted while waiting for action result...")
+    finally:
+        action_client.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
     return 0
 
 

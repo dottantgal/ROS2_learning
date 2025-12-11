@@ -91,8 +91,15 @@ class ConcatenateActionServer(Node):
 def main(args=None):
     rclpy.init(args=args)
     action_server = ConcatenateActionServer()
-    rclpy.spin(action_server)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(action_server)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            action_server.get_logger().info("Shutting down action server...")
+    finally:
+        action_server.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

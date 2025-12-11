@@ -24,8 +24,15 @@ class MyFirstNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MyFirstNode()
-    rclpy.spin(node)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            node.get_logger().info("Shutting down node...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

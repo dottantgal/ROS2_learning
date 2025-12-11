@@ -98,8 +98,15 @@ def main(args=None):
     # 'execute' is called whenever 'handle_goal' returns by accepting a goal
     # Note: In Python, the execute callback runs in a separate thread automatically
     
-    rclpy.spin(action_server)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(action_server)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            action_server.get_logger().info("Shutting down action server...")
+    finally:
+        action_server.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

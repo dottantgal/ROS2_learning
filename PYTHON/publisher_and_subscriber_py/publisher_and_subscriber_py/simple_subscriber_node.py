@@ -27,9 +27,15 @@ def main(args=None):
           'topic',
           topic_callback,
           10)
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            node.get_logger().info("Shutting down node...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

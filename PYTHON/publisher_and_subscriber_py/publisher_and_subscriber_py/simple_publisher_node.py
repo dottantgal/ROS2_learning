@@ -23,19 +23,24 @@ def main(args=None):
     counter = 0
     rate = rclpy.create_rate(2, node.get_clock())
 
-    while rclpy.ok():
-        msg.data = "Hello, world! " + str(counter)
-        node.get_logger().info("Publishing -> " + msg.data)
-        try:
-            publisher.publish(msg)
-            counter = counter + 1
-            rclpy.spin_once(node)
-        except Exception as e:
-            node.get_logger().info("Error type: " + str(e))
-        rate.sleep()
-    
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        while rclpy.ok():
+            msg.data = "Hello, world! " + str(counter)
+            node.get_logger().info("Publishing -> " + msg.data)
+            try:
+                publisher.publish(msg)
+                counter = counter + 1
+                rclpy.spin_once(node)
+            except Exception as e:
+                node.get_logger().info("Error type: " + str(e))
+            rate.sleep()
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            node.get_logger().info("Shutting down node...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

@@ -36,6 +36,9 @@ def main(args=None):
     # Waiting for the server online response
     if not action_client.wait_for_server(timeout_sec=10.0):
         client_node.get_logger().error('!!ATTENTION!! Action server not available')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     
     # Creation of the goal message
@@ -52,16 +55,30 @@ def main(args=None):
     )
     
     # The goal is sent and the server answers, it's necessary a SUCCESS to continue the communication
-    rclpy.spin_until_future_complete(client_node, send_goal_future)
+    try:
+        rclpy.spin_until_future_complete(client_node, send_goal_future)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            client_node.get_logger().info("Interrupted while waiting for goal response...")
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+        return 1
     
     goal_handle = send_goal_future.result()
     if not goal_handle:
         client_node.get_logger().error('send goal call failed :(')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     
     # The server elaborates the goal and decide to reject or not the goal
     if not goal_handle.accepted:
         client_node.get_logger().error('Goal was rejected by server')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     
     client_node.get_logger().info('Goal accepted by server, waiting for result')
@@ -69,7 +86,15 @@ def main(args=None):
     # Wait for the server to be done with the goal
     result_future = goal_handle.get_result_async()
     client_node.get_logger().info('Waiting for result')
-    rclpy.spin_until_future_complete(client_node, result_future)
+    try:
+        rclpy.spin_until_future_complete(client_node, result_future)
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            client_node.get_logger().info("Interrupted while waiting for result...")
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+        return 1
     
     # The clients gets the final result from the server
     wrapped_result = result_future.result()
@@ -78,15 +103,26 @@ def main(args=None):
         client_node.get_logger().info(f'{wrapped_result.result.final_concatenation}')
     elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_ABORTED:
         client_node.get_logger().error('Goal was aborted')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_CANCELED:
         client_node.get_logger().error('Goal was canceled')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     else:
         client_node.get_logger().error('Unknown result code')
+        client_node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
         return 1
     
-    rclpy.shutdown()
+    client_node.destroy_node()
+    if rclpy.ok():
+        rclpy.shutdown()
     return 0
 
 
