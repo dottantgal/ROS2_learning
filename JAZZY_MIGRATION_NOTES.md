@@ -18,11 +18,13 @@ All C++ packages have been converted to Python equivalents:
 - ✅ `service_server_and_client` → `service_server_and_client_py`
 - ✅ `message_sync` → `message_sync_py`
 - ✅ `actions/action_tutorial` → `actions/action_tutorial_py`
-- ✅ `actions/custom_action` → `actions/custom_action_py`
+- ✅ `actions/custom_action` → `actions/custom_action_py` (interfaces only - Python packages depend on this)
 - ✅ `dynamic_tf2_publisher` → `dynamic_tf2_publisher_py`
 - ✅ `create_library_with_header` → `create_library_with_header_py`
 - ✅ `plugins/vehicle_base` → `plugins/vehicle_base_py`
 - ✅ `plugins/vehicle_plugins` → `plugins/vehicle_plugins_py`
+
+**Important**: Custom interfaces (messages, services, actions) are defined in C++ packages. Python packages depend on these C++ packages rather than duplicating the interface definitions.
 
 #### 2. Test Files Removal
 All test files have been removed from Python packages as requested:
@@ -77,21 +79,23 @@ All C++ packages are maintained and compatible with Jazzy:
 12. `create_library_with_header/use_library`
 13. `dynamic_tf2_publisher`
 
-### Python Packages (13 packages)
+### Python Packages (12 packages)
 All Python packages are new implementations:
 1. `start_with_simple_nodes_py`
 2. `publisher_and_subscriber_py`
-3. `custom_msg_and_srv_py`
-4. `service_server_and_client_py`
+3. `custom_msg_and_srv_py` (depends on C++ `custom_msg_and_srv` for interfaces)
+4. `service_server_and_client_py` (depends on C++ `custom_msg_and_srv` for interfaces)
 5. `parameters_py`
 6. `plugins/vehicle_base_py`
 7. `plugins/vehicle_plugins_py`
-8. `actions/action_tutorial_py`
-9. `actions/custom_action_py`
+8. `actions/action_tutorial_py` (depends on C++ `custom_action` for interfaces)
+9. ~~`actions/custom_action_py`~~ (removed - interfaces defined in C++ `custom_action`)
 10. `message_sync_py`
 11. `create_library_with_header_py/publisher_library_py`
 12. `create_library_with_header_py/use_library_py`
 13. `dynamic_tf2_publisher_py`
+
+**Note**: `custom_action_py` was removed following ROS 2 best practices. Custom interfaces are defined in C++ packages, and Python packages depend on them.
 
 ## Documentation
 - All packages now have comprehensive README.md files
@@ -124,15 +128,48 @@ All Python packages are new implementations:
 - ✅ Action servers/clients use modern interface-based patterns
 - ✅ Python packages use modern `.value` accessor for parameters
 
-## Next Steps
-1. ✅ All packages converted
-2. ✅ Documentation complete
-3. ✅ Jazzy-specific improvements applied
-4. ✅ Jazzy branch merged to main
-5. ⚠️ Set jazzy as default branch on GitHub (requires web interface)
+### 5. Python-Specific API Changes
+
+#### Rate Creation API
+- ❌ **Deprecated in Jazzy**: `rclpy.create_rate(frequency, clock)` 
+- ✅ **New Jazzy API**: `node.create_rate(frequency)`
+  - Example: `rate = node.create_rate(2)  # 2 Hz`
+  - The rate object has a `sleep()` method: `rate.sleep()`
+  - Reference: [ROS 2 Jazzy Migration Guide](https://docs.ros.org/en/jazzy/How-To-Guides/Migrating-from-ROS1/Migrating-Python-Package-Example.html#create-a-rate)
+
+#### Graceful Shutdown Handling
+- ✅ All Python nodes now handle `KeyboardInterrupt` gracefully
+- ✅ Added `rclpy.ok()` checks before calling `rclpy.shutdown()` to prevent double shutdown errors
+- ✅ Added `rclpy.ok()` checks before logging in KeyboardInterrupt handlers to prevent "context is invalid" errors
+- Pattern used:
+  ```python
+  try:
+      rclpy.spin(node)
+  except KeyboardInterrupt:
+      if rclpy.ok():
+          node.get_logger().info("Shutting down node...")
+  finally:
+      node.destroy_node()
+      if rclpy.ok():
+          rclpy.shutdown()
+  ```
+
+#### Custom Interface Package Architecture
+- ✅ **Best Practice**: Custom interfaces (messages, services, actions) are defined in C++ packages using `ament_cmake` and `rosidl_generate_interfaces`
+- ✅ Python packages depend on C++ interface packages, not duplicate them
+- ✅ Example: `service_server_and_client_py` imports from `custom_msg_and_srv.srv`, not `custom_msg_and_srv_py.srv`
+- ✅ Removed duplicate `custom_action_py` package - Python action packages now depend on `custom_action` (C++)
+- ✅ Updated all imports and package.xml dependencies accordingly
+
+### Build Order
+When building packages that depend on custom interfaces:
+1. Build the C++ interface package first: `colcon build --packages-select custom_msg_and_srv`
+2. Then build dependent Python packages: `colcon build --packages-select service_server_and_client_py`
+3. Or build all together: `colcon build --symlink-install`
 
 ## Notes
 - The repository maintains both C++ and Python implementations side-by-side
 - Users can learn both `rclcpp` and `rclpy` APIs
 - All examples are tested and verified for ROS 2 Jazzy
+- Custom interfaces follow ROS 2 best practice: defined in C++ packages, used by both C++ and Python packages
 
