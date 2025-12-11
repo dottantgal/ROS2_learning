@@ -11,7 +11,7 @@
 
 import rclpy
 from rclpy.node import Node
-from rclpy.action import ActionServer
+from rclpy.action import ActionServer, GoalResponse
 from custom_action.action import Concatenate
 
 
@@ -38,8 +38,9 @@ class ConcatenateActionServer(Node):
         )
         # Conditional to reject numbers of concatenations
         if (goal_request.num_concatenations > 10) and (goal_request.num_concatenations < 2):
-            return rclpy.action.GoalResponse.REJECT
-        return rclpy.action.GoalResponse.ACCEPT_AND_EXECUTE
+            return GoalResponse.REJECT
+        # In ROS 2 Jazzy Python, use ACCEPT instead of ACCEPT_AND_EXECUTE
+        return GoalResponse.ACCEPT
 
     def handle_cancel(self, goal_handle):
         """
@@ -70,7 +71,7 @@ class ConcatenateActionServer(Node):
                 result.final_concatenation = concatenation
                 goal_handle.canceled()
                 self.get_logger().info('Goal Canceled')
-                return
+                return result
             
             # Update the final concatenation
             concatenation = concatenation + " " + my_string
@@ -82,10 +83,11 @@ class ConcatenateActionServer(Node):
             rclpy.spin_once(self, timeout_sec=1.0)
         
         # Check if goal is done
+        result.final_concatenation = concatenation
         if rclpy.ok():
-            result.final_concatenation = concatenation
             goal_handle.succeed()
             self.get_logger().info('Goal Succeeded')
+        return result
 
 
 def main(args=None):
