@@ -20,20 +20,37 @@ This repository collects C++ and Python packages designed to illustrate the core
 The easiest way to get started is using the provided Docker environment:
 
 ```bash
-# Build the Docker image (one time)
+# 1. Build the Docker image (one time)
 cd docker
+chmod +x build_image.sh run_container.sh attach_container.sh
 ./build_image.sh
 
-# Run the container
+# 2. Run the container (mounts repository automatically if ROS2_LEARNING_REPO is set)
+export ROS2_LEARNING_REPO=$(pwd)/..  # Set to your repository path
 ./run_container.sh
 
-# Inside the container: copy packages and build
-cp -r /mnt/ros2_learning/CPP/* ~/ros2_ws/src/  # if repository is mounted
-# OR copy from your mounted path
+# 3. Inside the container: copy packages and build
+# If repository was mounted:
+cp -r /mnt/ros2_learning/CPP/* ~/ros2_ws/src/
+cp -r /mnt/ros2_learning/PYTHON/* ~/ros2_ws/src/
+
+# Or use the helper script:
+./helpers/copy_packages.sh /mnt/ros2_learning ~/ros2_ws all
+
+# 4. Install dependencies and build
 cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 source install/setup.bash
+
+# 5. Run examples
+ros2 run start_with_simple_nodes my_first_node
+```
+
+**Note**: To open additional terminal sessions in the same container:
+```bash
+# From host (in docker directory)
+./attach_container.sh
 ```
 
 For detailed Docker instructions, see [docker/README.md](docker/README.md).
