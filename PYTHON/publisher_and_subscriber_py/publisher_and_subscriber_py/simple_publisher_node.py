@@ -21,7 +21,7 @@ def main(args=None):
     msg = String()
     publisher = node.create_publisher(String, 'topic', 10)
     counter = 0
-    rate = rclpy.create_rate(2, node.get_clock())
+    rate = node.create_rate(2)  # 2 Hz
 
     try:
         while rclpy.ok():
