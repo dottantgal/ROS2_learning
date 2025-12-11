@@ -4,7 +4,7 @@
 #  * @brief A basic ROS2 service client node with class implementation that asks the user 
 #  *        to input two strings and gets back a capitalized full string from the server service.
 #  *        It's necessary to use the custom message defined in the external 
-#  *        package "custom_msg_and_srv_py"
+#  *        package "custom_msg_and_srv" (C++ package)
 #  *
 #  * @author Antonio Mauro Galiano
 #  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
@@ -13,7 +13,7 @@
 
 import rclpy
 from rclpy.node import Node
-from custom_msg_and_srv_py.srv import CapitalFullName
+from custom_msg_and_srv.srv import CapitalFullName
 
 
 class MyClientNode(Node):
@@ -51,7 +51,12 @@ class MyClientNode(Node):
         
         # Spin until the future is complete
         # Note: In Python, we can use the node directly with spin_until_future_complete
-        rclpy.spin_until_future_complete(self, future)
+        try:
+            rclpy.spin_until_future_complete(self, future)
+        except KeyboardInterrupt:
+            if rclpy.ok():
+                self.get_logger().info("Interrupted while waiting for service response...")
+            return
         
         if future.result() is not None:
             self.get_logger().info(
@@ -65,14 +70,23 @@ class MyClientNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    node = None
     
-    # Get user input
-    name = input("Insert the name -> ")
-    surname = input("Insert the surname -> ")
-    
-    # Create the client node
-    node = MyClientNode("client_node", name, surname)
-    rclpy.shutdown()
+    try:
+        # Get user input
+        name = input("Insert the name -> ")
+        surname = input("Insert the surname -> ")
+        
+        # Create the client node
+        node = MyClientNode("client_node", name, surname)
+    except KeyboardInterrupt:
+        if node is not None and rclpy.ok():
+            node.get_logger().info("Interrupted while waiting for service...")
+    finally:
+        if node is not None:
+            node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

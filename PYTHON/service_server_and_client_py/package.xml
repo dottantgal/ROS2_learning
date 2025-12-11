@@ -8,7 +8,7 @@
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
-  <depend>custom_msg_and_srv_py</depend>
+  <depend>custom_msg_and_srv</depend>
 
   <export>
     <build_type>ament_python</build_type>

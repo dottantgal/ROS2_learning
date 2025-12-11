@@ -4,10 +4,10 @@
 #  * @brief A basic ROS2 service server node that gets two strings as request
 #  *        and answer with a capitalized full string as response.
 #  *        It's necessary to use the custom message defined in the external
-#  *        package "custom_msg_and_srv_py"
+#  *        package "custom_msg_and_srv" (C++ package)
 #  *        To call the service from a terminal use on a single line:
 #  *        ros2 service call /create_cap_full_name 
-#  *        custom_msg_and_srv_py/srv/CapitalFullName "{name: x, surname: y}"
+#  *        custom_msg_and_srv/srv/CapitalFullName "{name: x, surname: y}"
 #  *
 #  * @author Antonio Mauro Galiano
 #  * Contact: https://www.linkedin.com/in/antoniomaurogaliano/
@@ -16,7 +16,7 @@
 
 import rclpy
 from rclpy.node import Node
-from custom_msg_and_srv_py.srv import CapitalFullName
+from custom_msg_and_srv.srv import CapitalFullName
 
 # Global logger for the callback function
 _logger = None
@@ -55,8 +55,15 @@ def main(args=None):
         compose_full_name
     )
     node.get_logger().info('I am ready to capitalize your full name')
-    rclpy.spin(node)  # The service starts to wait and manage requests
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)  # The service starts to wait and manage requests
+    except KeyboardInterrupt:
+        if rclpy.ok():
+            node.get_logger().info("Shutting down service node...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

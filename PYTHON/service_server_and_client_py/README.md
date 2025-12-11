@@ -15,13 +15,24 @@ Learn ROS2 service patterns in Python:
 - ROS2 Jazzy installed and sourced
 - `colcon` build tools
 - Python 3.8 or higher
-- `custom_msg_and_srv_py` package (for custom service definition)
+- `custom_msg_and_srv` package (C++ package with custom service definition)
 
 ## Building
+
+**Important:** This package depends on the C++ package `custom_msg_and_srv`. Build it first:
+
 ```bash
-cd ~/ros2_ws/src
-# Clone or copy this package
+cd ~/ros2_ws
+# Build the C++ package with custom service definition first
+colcon build --packages-select custom_msg_and_srv --symlink-install
+# Then build this Python package
 colcon build --packages-select service_server_and_client_py --symlink-install
+source install/setup.bash
+```
+
+Or build all packages together:
+```bash
+colcon build --symlink-install
 source install/setup.bash
 ```
 
@@ -50,7 +61,7 @@ ros2 run service_server_and_client_py client_node_class
 ### Calling the Service from Command Line
 ```bash
 ros2 service call /create_cap_full_name \
-  custom_msg_and_srv_py/srv/CapitalFullName "{name: 'John', surname: 'Doe'}"
+  custom_msg_and_srv/srv/CapitalFullName "{name: 'John', surname: 'Doe'}"
 ```
 
 ## Key Concepts
@@ -61,9 +72,11 @@ ros2 service call /create_cap_full_name \
 - **Waiting for Service**: `wait_for_service(timeout_sec)` to ensure server is available
 
 ## Custom Service
-This package uses the `CapitalFullName` service from `custom_msg_and_srv_py`:
+This package uses the `CapitalFullName` service from the C++ package `custom_msg_and_srv`:
 - **Request**: `name` (string), `surname` (string)
 - **Response**: `capitalfullname` (string) - Capitalized full name
+
+**Note:** Following ROS 2 best practices, custom interfaces (messages, services, actions) are defined in C++ packages using `ament_cmake` and `rosidl_generate_interfaces`. Python packages then depend on these C++ packages to use the interfaces. This ensures consistency across languages and follows the recommended architecture.
 
 ## Files
 - `service_node.py` - Functional service server
