@@ -13,6 +13,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
+from action_msgs.msg import GoalStatus
 from custom_action.action import Concatenate
 
 
@@ -54,12 +55,12 @@ class ConcatenateActionClient(Node):
         )
         send_goal_future.add_done_callback(self.goal_response_callback)
 
-    def feedback_callback(self, goal_handle, feedback):
+    def feedback_callback(self, feedback):
         """
         Feedback callback.
         """
         self.get_logger().info(
-            f'Feedback received: {feedback.partial_concatenation}'
+            f'Feedback received: {feedback.feedback.partial_concatenation}'
         )
 
     def goal_response_callback(self, future):
@@ -83,12 +84,12 @@ class ConcatenateActionClient(Node):
         self._goal_done = True
         wrapped_result = future.result()
         
-        if wrapped_result.status == rclpy.action.GoalStatus.STATUS_SUCCEEDED:
+        if wrapped_result.status == GoalStatus.STATUS_SUCCEEDED:
             self.get_logger().info('Result received')
             self.get_logger().info(f'{wrapped_result.result.final_concatenation}')
-        elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_ABORTED:
+        elif wrapped_result.status == GoalStatus.STATUS_ABORTED:
             self.get_logger().error('Goal was aborted')
-        elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_CANCELED:
+        elif wrapped_result.status == GoalStatus.STATUS_CANCELED:
             self.get_logger().error('Goal was canceled')
         else:
             self.get_logger().error('Unknown result code')

@@ -13,16 +13,8 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
+from action_msgs.msg import GoalStatus
 from custom_action.action import Concatenate
-
-
-def feedback_callback(goal_handle, feedback):
-    """
-    The callback for the feedbacks.
-    The server sends back the partial sequence of the string concatenation.
-    """
-    node = rclpy.get_node("simple_action_client")
-    node.get_logger().info(f'Feedback received: {feedback.partial_concatenation}')
 
 
 def main(args=None):
@@ -46,6 +38,14 @@ def main(args=None):
     goal_msg.num_concatenations = 9  # The number of concatenation to perform
     
     client_node.get_logger().info('Sending goal')
+    
+    # Create feedback callback as a closure to capture the node
+    def feedback_callback(feedback):
+        """
+        The callback for the feedbacks.
+        The server sends back the partial sequence of the string concatenation.
+        """
+        client_node.get_logger().info(f'Feedback received: {feedback.feedback.partial_concatenation}')
     
     # Ask server to achieve some goal and wait until it's accepted
     # Here some options such as feedbacks are set
@@ -98,16 +98,16 @@ def main(args=None):
     
     # The clients gets the final result from the server
     wrapped_result = result_future.result()
-    if wrapped_result.status == rclpy.action.GoalStatus.STATUS_SUCCEEDED:
+    if wrapped_result.status == GoalStatus.STATUS_SUCCEEDED:
         client_node.get_logger().info('concatenation received')
         client_node.get_logger().info(f'{wrapped_result.result.final_concatenation}')
-    elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_ABORTED:
+    elif wrapped_result.status == GoalStatus.STATUS_ABORTED:
         client_node.get_logger().error('Goal was aborted')
         client_node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
         return 1
-    elif wrapped_result.status == rclpy.action.GoalStatus.STATUS_CANCELED:
+    elif wrapped_result.status == GoalStatus.STATUS_CANCELED:
         client_node.get_logger().error('Goal was canceled')
         client_node.destroy_node()
         if rclpy.ok():
